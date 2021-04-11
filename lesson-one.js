@@ -149,6 +149,76 @@ function bouncer(arr) {
 bouncer([7, "ate", "", false, 9])*/
 
 function bouncer(arr5) {
-    return arr5.filter(Number) && arr5.filter(String);
+    // return arr5.filter(Number) && arr5.filter(String);
+    return arr5.filter(Boolean);
 }    
-console.log(bouncer([7, "de"]));
+console.log(bouncer([7, "de", false,  ""]));
+
+/**         Where do I Belong
+Return the lowest index at which a value (second argument) should be inserted into an array (first argument) once it has been sorted. The returned value should be a number.
+
+For example, getIndexToIns([1,2,3,4], 1.5) should return 1 because it is greater than 1 (index 0), but less than 2 (index 1).
+
+Likewise, getIndexToIns([20,3,5], 19) should return 2 because once the array has been sorted it will look like [3,5,20] and 19 is less than 20 (index 2) and greater than 5 (index 1).
+
+function getIndexToIns(arr, num) {
+  return num;
+}
+
+getIndexToIns([40, 60], 50);*/
+function getIndexToIns(arr, num) {
+  arr.push(num);
+  arr.sort((a, b) => a-b);
+  return arr.indexOf(num);
+
+}
+console.log(getIndexToIns([10, 20, 30, 40, 50], 35));
+
+/**         Mutations
+Return true if the string in the first element of the array contains all of the letters of the string in the second element of the array.
+
+For example, ["hello", "Hello"], should return true because all of the letters in the second string are present in the first, ignoring case.
+
+The arguments ["hello", "hey"] should return false because the string hello does not contain a y.
+
+Lastly, ["Alien", "line"], should return true because all of the letters in line are present in Alien. 
+
+function mutation(arr) {
+  return arr;
+}
+
+mutation(["hello", "hey"]);*/
+function mutation(arr) {
+    let firstWord = arr[0].toLowerCase();
+    let secondWord = arr[1].toLowerCase();
+    let bool;
+    for(let i = 0; i < secondWord.length; i++) {
+        if (firstWord.indexOf(secondWord[i]) == -1) {
+            bool = false;
+            return bool;
+        }
+        else {
+            bool = true;
+        }
+    }
+    return bool;
+}
+console.log(mutation(["hello", "hey"]));
+
+/**Chunky Monkey
+Write a function that splits an array (first argument) into groups the length of size (second argument) and returns them as a two-dimensional array.
+
+function chunkArrayInGroups(arr, size) {
+  return arr;
+}
+
+chunkArrayInGroups(["a", "b", "c", "d"], 2);*/
+
+function chunkArrayInGroups(arr, size) {
+    for (let i = 0; i < arr.length; i++){
+        let newArr = arr.splice(i, size);
+        arr.unshift(newArr);
+    }
+    return arr.reverse();
+}
+console.log(chunkArrayInGroups(["a", "b", "c", "d"], 2));
