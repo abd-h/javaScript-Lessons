@@ -67,3 +67,7 @@ let dog2 = {
     }
 };
 
+/**         Make Code More Reusable with the this Keyword
+The last challenge introduced a method to the duck object. It used duck.name dot notation to access the value for the name property within the return statement: 
+
+*/
