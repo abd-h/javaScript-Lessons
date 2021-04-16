@@ -284,7 +284,12 @@ Bird2.prototype.numLegs = 2;
 
 console.log(duck.numLegs);
 console.log(canary.numLegs);
-/**Since all instances automatically have the properties on the prototype, think of a prototype as a "recipe" for creating objects. Note that the prototype for duck and canary is part of the Bird constructor as Bird.prototype. Nearly every object in JavaScript has a prototype property which is part of the constructor function that created it.
+/**Since all instances automatically have the properties on the prototype, 
+ think of a prototype as a "recipe" for creating objects. 
+ Note that the prototype for duck and canary is part of the 
+ Bird constructor as Bird.prototype. 
+ Nearly every object in JavaScript has a prototype 
+ property which is part of the constructor function that created it.
  * 
  * Add a numLegs property to the prototype of Dog
  * 
@@ -299,8 +304,72 @@ let beagle = new Dog("Snoopy");
  */
 function Dog(name) {
     this.name = name;
-    
 }
 Dog.prototype.numLegs = 4;
 let beagle = new Dog("Snoopy")
 console.log(beagle);
+
+/**         Iterate Over All Properties
+You have now seen two kinds of properties: own properties 
+and prototype properties. 
+Own properties are defined directly on the object instance itself. 
+And prototype properties are defined on the prototype. */
+
+function Bird5(name) {
+    this.name = name;// own property
+}
+Bird5.prototype.numLegs = 2; // prototype property
+
+let ducky = new Bird5("DonalDuck");
+
+/**Here is how you add duck's own properties to the array ownProp
+ * and prototype properties to the array prototypeProps: */
+let ownProp = [];
+let prototypeProps = [];
+for (let property in ducky) {
+    if (ducky.hasOwnProperty(property)){
+        ownProp.push(property)
+    }
+    else {
+        prototypeProps.push(property)
+    }
+}
+console.log(ownProp);
+console.log(prototypeProps);
+
+/**console.log(ownProps) would display ["name"] in the console, 
+ * and console.log(prototypeProps) would display ["numLegs"]. 
+ * 
+ * Add all of the own properties of beagle to the array ownProps. 
+ * Add all of the prototype properties of Dog to the array prototypeProps.*/
+
+function Dog2(name) {
+    this.name = name;//property
+}
+
+Dog2.prototype.numLegs = 4; //prototype
+
+let beagele1 = new Dog2("scully");
+
+let ownProps1 = [];
+let prototypeProps1 = [];
+for (let property in beagele1) {
+        if (beagele1.hasOwnProperty(property)) {
+            ownProps1.push(property);
+        }
+        else {
+            prototypeProps1.push(property)
+        }
+}
+console.log(prototypeProps1);
+console.log(ownProps1);
+
+/**         Understand the Constructor Property
+There is a special constructor property located on the object instances duck and beagle that were created in the previous challenges: */
+
+let deduck = new Bird2();
+let dedog = new Dog();
+
+console.log(deduck.constructor === Bird2);
+console.log(dedog.constructor === Dog);
+
