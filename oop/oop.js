@@ -220,3 +220,87 @@ function House(numBedrooms) {
 }
 let myHouse = new House(5);
 console.log(myHouse instanceof House);
+
+/**             Understand Own Properties
+In the following example, the Bird constructor defines two properties: name and numLegs: */
+
+function Bird2(name) {
+    this.name = name;
+    this.numLegs = 2;
+}
+let duck4 = new Bird2("Donald");
+let canary = new Bird("Tweety");
+
+/**name and numLegs are called own properties, because they are defined directly on the instance object. That means that duck and canary each has its own separate copy of these properties. In fact every instance of Bird will have its own copy of these properties. The following code adds all of the own properties of duck to the array ownProps:
+ */
+
+let ownProps = [];
+
+for (let property in duck4) {
+    if (duck4.hasOwnProperty(property)) {
+        ownProps.push(property)
+    }
+}
+console.log(ownProps);
+
+/**The console would display the value ["name", "numLegs"]. */
+function Occassions(weddings, proms, xmasparty) {
+    this.weddings = weddings;
+    this.proms = proms;
+    this.xmasparty = xmasparty;
+    this.shopAt = "Moss Bros";
+    this.venue = "Marriot Hotel"
+    this.location = "London";
+    this.capacity = 400;
+}
+
+let myWedding = new Occassions("Wedding", 0, 1);
+console.log(myWedding);
+
+console.log(myWedding instanceof Occassions);
+
+let guess  = [];
+for (let person in myWedding){
+    if (myWedding.hasOwnProperty(person)){
+        guess.push(person);
+    }
+}
+console.log(guess);
+
+/**Use Prototype Properties to Reduce Duplicate Code
+Since numLegs will probably have the same value for all instances of Bird, 
+you essentially have a duplicated variable numLegs inside each Bird instance.
+
+This may not be an issue when there are only two instances, 
+but imagine if there are millions of instances. 
+That would be a lot of duplicated variables.
+
+A better way is to use Bird’s prototype. 
+Properties in the prototype are shared among ALL instances of Bird. 
+Here's how to add numLegs to the Bird prototype:
+ */
+Bird2.prototype.numLegs = 2;
+// Now all instances of Bird have the numLegs property.
+
+console.log(duck.numLegs);
+console.log(canary.numLegs);
+/**Since all instances automatically have the properties on the prototype, think of a prototype as a "recipe" for creating objects. Note that the prototype for duck and canary is part of the Bird constructor as Bird.prototype. Nearly every object in JavaScript has a prototype property which is part of the constructor function that created it.
+ * 
+ * Add a numLegs property to the prototype of Dog
+ * 
+ * function Dog(name) {
+  this.name = name;
+}
+
+
+
+// Only change code above this line
+let beagle = new Dog("Snoopy");
+ */
+function Dog(name) {
+    this.name = name;
+    
+}
+Dog.prototype.numLegs = 4;
+let beagle = new Dog("Snoopy")
+console.log(beagle);
