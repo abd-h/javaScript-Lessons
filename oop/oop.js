@@ -595,7 +595,9 @@ requires fixing code in multiple places.
 This usually means more work for programmers and more room for errors.
 
 Notice in the example below that the describe method is shared by Bird and Dog: */
-
+function OurBird(name){
+    this.name = name;
+}
 OurBird.prototype = {
     constructor: OurBird,
     describe: function(){
@@ -603,6 +605,10 @@ OurBird.prototype = {
     }
 };
 
+
+function MyDog(name) {
+    this.name = name;
+}
 MyDog.prototype = { 
     constructor: MyDog,
     describe: function(){
@@ -620,10 +626,18 @@ Animal.prototype = {
         console.log("My name is " + this.name);
     }
 };
+
+function MyDog1(name) {
+    this.name = name;
+}
+
 MyDog1.prototype = {
     constructor: MyDog1
 };
 
+function MyBird(name) {
+    this.name = name;
+}
 MyBird.prototype = {
     constructor: MyBird
 };
@@ -668,3 +682,41 @@ Animal1.prototype = {
     console.log("nom nom nom");
   }
 };
+
+/**Inherit Behaviors from a Supertype
+In the previous challenge, you created a supertype called Animal 
+that defined behaviors shared by all animals: */
+
+function Animal(){}
+Animal.prototype = {
+    constroctor: Animal,
+    eat: function() {
+        console.log("nom nom nom")
+    }
+};
+
+/*This and the next challenge will cover how to reuse 
+Animal's methods inside Bird and Dog without defining them again. 
+It uses a technique called inheritance. This challenge covers the 
+first step: make an instance of the supertype (or parent). 
+You already know one way to create an instance of Animal using the new operator:
+*/
+
+let animal = new Animal();
+/**There are some disadvantages when using this syntax for inheritance, 
+ * which are too complex for the scope of this challenge. 
+ * Instead, here's an alternative approach without those disadvantages: */
+
+let animal1 = Object.create(Animal.prototype);
+console.log(animal1);
+
+/**Object.create(obj) creates a new object, 
+ * and sets obj as the new object's prototype. 
+ * Recall that the prototype is like the "recipe" 
+ * for creating an object. By setting the prototype of animal to be 
+ * Animal's prototype, you are effectively giving the animal instance 
+ * the same "recipe" as any other instance of Animal. */
+animal1.eat()
+console.log(animal1 instanceof Animal);
+
+
