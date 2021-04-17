@@ -192,7 +192,12 @@ let terrier = new Adog("Screamer", "Grey");
 console.log(terrier);
 
 /**Verify an Object's Constructor with instanceof
-Anytime a constructor function creates a new object, that object is said to be an instance of its constructor. JavaScript gives a convenient way to verify this with the instanceof operator. instanceof allows you to compare an object to a constructor, returning true or false based on whether or not that object was created with the constructor. Here's an example: */
+Anytime a constructor function creates a new object, 
+that object is said to be an instance of its constructor. 
+JavaScript gives a convenient way to verify this with the instanceof operator. 
+instanceof allows you to compare an object to a constructor, 
+returning true or false based on whether or not that object was created with the constructor. 
+Here's an example: */
 
 let Bird1 = function(name, color){
     this.name = name;
@@ -203,7 +208,8 @@ let crow = new Bird1("Tiker", "Silver");
 console.log(crow instanceof Bird1); 
 /**This instanceof method would return true.
 
-If an object is created without using a constructor, instanceof will verify that it is not an instance of that constructor: */
+If an object is created without using a constructor, 
+instanceof will verify that it is not an instance of that constructor: */
 
 let bird = {
     name: "zizy",
@@ -213,7 +219,9 @@ let bird = {
 console.log(bird instanceof Bird1 );
 /**This instanceof method would return false. 
  * 
- * Create a new instance of the House constructor, calling it myHouse and passing a number of bedrooms. Then, use instanceof to verify that it is an instance of House.
+ * Create a new instance of the House constructor, 
+ * calling it myHouse and passing a number of bedrooms. 
+ * Then, use instanceof to verify that it is an instance of House.
 */
 function House(numBedrooms) {
     this.numBedrooms = numBedrooms
@@ -231,7 +239,11 @@ function Bird2(name) {
 let duck4 = new Bird2("Donald");
 let canary = new Bird("Tweety");
 
-/**name and numLegs are called own properties, because they are defined directly on the instance object. That means that duck and canary each has its own separate copy of these properties. In fact every instance of Bird will have its own copy of these properties. The following code adds all of the own properties of duck to the array ownProps:
+/**name and numLegs are called own properties, 
+ * because they are defined directly on the instance object. 
+ * That means that duck and canary each has its own separate copy of these properties. 
+ * In fact every instance of Bird will have its own copy of these properties. 
+ * The following code adds all of the own properties of duck to the array ownProps:
  */
 
 let ownProps = [];
@@ -443,7 +455,8 @@ Bird3.prototype = {
 };
 console.log(Bird3.prototype);
 
-/**Add the property numLegs and the two methods eat() and describe() to the prototype of Dog by setting the prototype to a new object.
+/**Add the property numLegs and the two methods eat() and describe() 
+ * to the prototype of Dog by setting the prototype to a new object.
  */
 
 function Dogger(name) {
@@ -473,7 +486,8 @@ This property can be used to check which constructor function created the instan
  console.log(puppy.constructor === Object);
  console.log(puppy instanceof Dogger);
  /**In order, these expressions would evaluate to false, true, and true. 
-  * To fix this, whenever a prototype is manually set to a new object, remember to define the constructor property:
+  * To fix this, whenever a prototype is manually set to a new object, 
+  * remember to define the constructor property:
  */
 Dogger.prototype = {
     constructor:Dogger,
@@ -545,7 +559,13 @@ console.log(Object.prototype.isPrototypeOf(Mybird.prototype));
 
 let ducky1 = new Bird("Mevrick");
 console.log(ducky1.hasOwnProperty("name"));
-/**The hasOwnProperty method is defined in Object.prototype, which can be accessed by Bird.prototype, which can then be accessed by duck. This is an example of the prototype chain. In this prototype chain, Bird is the supertype for duck, while duck is the subtype. Object is a supertype for both Bird and duck. Object is a supertype for all objects in JavaScript. Therefore, any object can use the hasOwnProperty method.
+/**The hasOwnProperty method is defined in Object.prototype, 
+ * which can be accessed by Bird.prototype, 
+ * which can then be accessed by duck. This is an example of the prototype chain. 
+ * In this prototype chain, Bird is the supertype for duck, 
+ * while duck is the subtype. Object is a supertype for both Bird and duck. 
+ * Object is a supertype for all objects in JavaScript. 
+ * Therefore, any object can use the hasOwnProperty method.
  * 
  * Modify the code to show the correct prototype chain.
 
