@@ -536,7 +536,8 @@ Mybird.prototype.numLegs = 4; //prototype
 console.log(typeof Mybird.prototype);
 console.log(typeof Mybird.prototype.numLegs);
 
-/**Because a prototype is an object, a prototype can have its own prototype! In this case, the prototype of Bird.prototype is Object.prototype: */
+/**Because a prototype is an object, a prototype can have its own prototype! 
+ * In this case, the prototype of Bird.prototype is Object.prototype: */
 console.log(Object.prototype.isPrototypeOf(Mybird.prototype));
 
 /**How is this useful? You may recall the hasOwnProperty 
@@ -566,3 +567,84 @@ function OurDog(name) {
 let myBeagle = new OurDog("Beale");
 console.log(OurDog.prototype.isPrototypeOf(myBeagle));
 console.log(Object.prototype.isPrototypeOf(OurDog.prototype));
+
+/**Use Inheritance So You Don't Repeat Yourself
+There's a principle in programming called Don't Repeat Yourself (DRY). 
+The reason repeated code is a problem is because any change 
+requires fixing code in multiple places. 
+This usually means more work for programmers and more room for errors.
+
+Notice in the example below that the describe method is shared by Bird and Dog: */
+
+OurBird.prototype = {
+    constructor: OurBird,
+    describe: function(){
+        console.log("My name is " + this.name);
+    }
+};
+
+MyDog.prototype = { 
+    constructor: MyDog,
+    describe: function(){
+        console.log("My name is " + this.name);
+    }
+};
+
+/**The describe method is repeated in two places. 
+ * The code can be edited to follow the DRY principle 
+ * by creating a supertype (or parent) called Animal: */
+function Animal(){}
+Animal.prototype = {
+    constructor: Animal,
+    describe: function(){
+        console.log("My name is " + this.name);
+    }
+};
+MyDog1.prototype = {
+    constructor: MyDog1
+};
+
+MyBird.prototype = {
+    constructor: MyBird
+};
+/**The eat method is repeated in both Cat and Bear.
+ *  Edit the code in the spirit of DRY by moving the eat 
+ * method to the Animal supertype.
+
+function Cat(name) {
+  this.name = name;
+}
+
+Cat.prototype = {
+  constructor: Cat,
+  eat: function() {
+    console.log("nom nom nom");
+  }
+};
+
+function Bear(name) {
+  this.name = name;
+}
+
+Bear.prototype = {
+  constructor: Bear,
+  eat: function() {
+    console.log("nom nom nom");
+  }
+};
+
+function Animal1() { }
+
+Animal.prototype = {
+  constructor: Animal,
+
+};
+ */
+function Animal1(){}
+
+Animal1.prototype = {
+    constructor: Animal1,
+    eat: function() {
+    console.log("nom nom nom");
+  }
+};
