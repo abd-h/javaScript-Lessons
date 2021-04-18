@@ -719,4 +719,82 @@ console.log(animal1);
 animal1.eat()
 console.log(animal1 instanceof Animal);
 
+/**Set the Child's Prototype to an Instance of the Parent
+In the previous challenge you saw the first step for inheriting 
+behavior from the supertype (or parent) Animal: making a new instance of Animal.
+ */
+function Animals() {}
 
+Animals.prototype = {
+    constructor: Animals,
+    eat() {
+        console.log("Grass or Raw meat");
+    },
+    describe: function() {
+        console.log("My name is " + this.name);
+    },
+    location(){
+        return "India"
+    }
+};
+let Animals1 = Object.create(Animals.prototype)
+
+/**This challenge covers the next step: set the prototype 
+ * of the subtype (or child)—in this case, Bird—to be an instance of Animal. */
+function Preditors(){}
+Preditors.prototype = {
+    constructor: Preditors,
+    eat() {
+        return "Carnivore"
+    },
+    location() {
+        return "India";
+    }
+};
+
+let tiger = new Preditors("Asian Tiger")
+tiger.prototype = Object.create(Animals.prototype);
+console.log(tiger.eat());
+
+
+/**Remember that the prototype is like the "recipe" 
+ * for creating an object. In a way, the recipe 
+ * for Preditors now includes all the key "ingredients" from Animals. 
+ * 
+ * function Animal() { }
+
+Animal.prototype = {
+  constructor: Animal,
+  eat: function() {
+    console.log("nom nom nom");
+  }
+};
+
+function Dog() { }
+
+// Only change code below this line
+
+
+let beagle = new Dog();*/
+
+console.log(tiger);
+
+function Animals2() {}
+
+Animals2.prototype = {
+    constructor: Animals2,
+    location(){
+        return "India";
+    },
+    type() {
+        return "Preditor Prey";
+    }
+}
+
+function Preditor1(anme) {
+    this.name = name;
+}
+
+let lion = new Preditors("Sweto");
+Preditors.prototype = Object.create(Animals2.prototype);
+console.log(lion);
