@@ -798,3 +798,258 @@ function Preditor1(anme) {
 let lion = new Preditors("Sweto");
 Preditors.prototype = Object.create(Animals2.prototype);
 console.log(lion);
+
+/**Reset an Inherited Constructor Property
+When an object inherits its prototype from another object, 
+it also inherits the supertype's constructor property.
+
+Here's an example: */
+
+function Bird() {}
+
+Bird.prototype = Object.create(Animals2.prototype)
+let pegion = new Bird();
+Bird.constructor;
+
+/**But duck and all instances of Bird should show 
+ * that they were constructed by Bird and not Animal. 
+ * To do so, you can manually set Bird's constructor property to the Bird object:
+
+ */
+Bird.prototype.constroctor = Bird;
+console.log(pegion.constroctor);
+
+/**Fix the code so duck.constructor and 
+ * beagle.constructor return their respective constructors. 
+ * 
+ * function Animal() { }
+function Bird() { }
+function Dog() { }
+
+Bird.prototype = Object.create(Animal.prototype);
+Dog.prototype = Object.create(Animal.prototype);
+
+// Only change code below this line
+
+
+
+let crow = new Bird();
+let beagle = new Dog();*/
+
+function AnAnimal() {}
+function BigBird() {}
+function BigDog() {}
+let crow1= new BigBird();
+let eagle = new BigBird();
+
+BigBird.prototype = Object.create(AnAnimal.prototype);
+BigDog.prototype = Object.create(AnAnimal.prototype);
+BigBird.prototype.constroctor = BigBird;
+console.log(crow1.constructor);
+
+/**         Add Methods After Inheritance
+A constructor function that inherits its prototype object from 
+a supertype constructor function can still have its own methods 
+in addition to inherited methods.
+
+For example, Bird is a constructor that inherits its prototype from Animal:
+
+ */
+
+function Animal3() { }
+Animal3.prototype.eat = function(){
+    return "nom nom nom";
+};
+function SeaBird(){ }
+SeaBird.prototype = Object.create(Animal3.prototype);
+SeaBird.prototype.constroctor = SeaBird;
+
+/**In addition to what is inherited from Animal, 
+ * you want to add behavior that is unique to Bird objects. 
+ * Here, Bird will get a fly() function. 
+ * Functions are added to Bird's prototype the same way 
+ * as any constructor function: */
+SeaBird.prototype.fly = function(){
+    return "This Sea Bird can cover fast distances";
+}
+
+let seaGull = new SeaBird();
+console.log(seaGull.eat());
+console.log(seaGull.fly());
+
+/** seaGul.eat() would display the string nom nom nom in the console, 
+ * and seaGull.fly() would display the string I'm flying!. 
+ * 
+ * Add all necessary code so the Dog object inherits from Animal 
+ * and the Dog's prototype constructor is set to Dog. 
+ * Then add a bark() method to the Dog object so that beagle 
+ * can both eat() and bark(). The bark() method should print 
+ * Woof! to the console.
+ * 
+ **/
+function AnimalA(){}
+AnimalA.prototype.eat = function (){
+    return "Red meat";
+}
+function BullDog () { }
+BullDog.prototype = Object.create(AnimalA.prototype);
+BullDog.prototype.constroctor = BullDog;
+
+BullDog.prototype.bark = function(){
+    return "Woof"
+}
+let beagleA = new BullDog();
+console.log(beagleA.eat());
+console.log(beagleA.bark());
+
+/**Override Inherited Methods
+In previous lessons, you learned that an object can inherit its 
+behavior (methods) from another object by referencing its prototype object: */
+function ParentObject(){ }
+ParentObject.prototype = {
+    constroctor: ParentObject,
+    eat: function() {
+        return "I will only eat red meat";
+    },
+    year: 2021,
+}
+// ParentObject.prototype.constructor = ParentObject;
+function ChildObject(name) {
+    this.name = name;
+}
+ChildObject.prototype = Object.create(ParentObject.prototype)
+
+/*Then the ChildObject received its own methods by chaining them onto its prototype:*/
+ChildObject.prototype.sport = function(){
+    return "I am Football player";
+};
+ChildObject.prototype.constroctor = ChildObject;
+console.log(ChildObject.prototype.sport());
+console.log(ChildObject.prototype.eat());
+
+let student = new ChildObject("Thomas")
+
+console.log(student.sport().concat(" and "), student.eat());
+
+/**It's possible to override an inherited method. 
+ * It's done the same way - by adding a method to ChildObject.prototype 
+ * using the same method name as the one to override. Here's an example of Bird overriding the eat() method inherited from Animal:
+ */
+ChildObject.prototype.eat = function(){
+    return "I actully don't eat Red meat anymore. I am vegetarian"
+}
+console.log(student.sport().concat(" and "), student.eat());
+
+/**function Animal() { }
+Animal.prototype.eat = function() {
+  return "nom nom nom";
+};
+function Bird() { }
+
+Bird.prototype = Object.create(Animal.prototype);
+
+Bird.prototype.eat = function() {
+  return "peck peck peck";
+};
+If you have an instance let duck = new Bird(); and you call duck.eat(), 
+this is how JavaScript looks for the method on duck’s prototype chain:
+
+duck => Is eat() defined here? No.
+Bird => Is eat() defined here? => Yes. Execute it and stop searching.
+Animal => eat() is also defined, but JavaScript stopped searching 
+before reaching this level.
+Object => JavaScript stopped searching before reaching this level.
+ 
+
+Override the fly() method for Penguin so that it returns the string Alas, 
+this is a flightless bird.
+
+function Bird() { }
+
+Bird.prototype.fly = function() { return "I am flying!"; };
+
+function Penguin() { }
+Penguin.prototype = Object.create(Bird.prototype);
+Penguin.prototype.constructor = Penguin;
+
+// Only change code below this line
+
+
+
+// Only change code above this line
+
+let penguin = new Penguin();
+console.log(penguin.fly());
+*/
+function BirdB(){ }
+Bird.prototype.fly = function (){
+    return "I am flying";
+}
+
+function Penguin(){}
+Penguin.property = Object.create(BirdB.prototype);
+Bird.prototype.constroctor = BirdB;
+
+Penguin.prototype.fly = function(){
+    return "Alas, this is a flightless bird.";
+};
+
+let penguin = new Penguin();
+console.log(penguin.fly());
+
+/**Use a Mixin to Add Common Behavior Between Unrelated Objects
+As you have seen, behavior is shared through inheritance. 
+However, there are cases when inheritance is not the best solution. 
+Inheritance does not work well for unrelated objects like Bird and Airplane. 
+They can both fly, but a Bird is not a type of Airplane and vice versa.
+
+For unrelated objects, it's better to use mixins. 
+A mixin allows other objects to use a collection of functions. */
+
+let flyMixing = function (obj){
+    obj.fly = function (){
+        return "Flying Wooosh"
+    }
+};
+
+/**The flyMixin takes any object and gives it the fly method.*/
+
+let birdA = {
+    name: "Donald",
+    numLegs: 2
+};
+
+let plane = {
+    model: "777",
+    numOfPassengers: 252
+};
+flyMixing(birdA);
+flyMixing(plane)
+
+/**Here bird and plane are passed into flyMixin, which then assigns the 
+ * fly function to each object. Now bird and plane can both fly: */
+console.log(birdA.fly());
+console.log(plane.fly());
+/**The console would display the string Flying, wooosh! twice, 
+ * once for each .fly() call.
+ * Note how the mixin allows for the same fly method to be reused 
+ * by unrelated objects bird and plane.
+
+
+Create a mixin named glideMixin that defines a method named glide. 
+Then use the glideMixin to give both bird and boat the ability to glide.
+
+*/
+
+let glideMixin = function(glider) {
+    glider.glide = function (){
+        return "gliding all the way down";
+    }
+};
+
+glideMixin(plane);
+console.log(plane.glide());
+
+
+
+
