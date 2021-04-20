@@ -139,11 +139,18 @@ function Bird() {
     this.color = blue;
     this.numLegs = 2;
 }*/
-let blueBird = Bird();
+let blueBird = new Bird();
 
-/**NOTE: this inside the constructor always refers to the object being created.
+/**NOTE: this inside the constructor always refers to the object 
+being created.
 
-Notice that the new operator is used when calling a constructor. This tells JavaScript to create a new instance of Bird called blueBird. Without the new operator, this inside the constructor would not point to the newly created object, giving unexpected results. Now blueBird has all the properties defined inside the Bird constructor:
+Notice that the new operator is used when calling a constructor. 
+This tells JavaScript to create a new instance of Bird called blueBird. 
+Without the new operator, this inside the constructor would not 
+point to the newly created object, giving unexpected results. 
+
+Now blueBird has all the properties defined inside the 
+Bird constructor:
 
 blueBird.name;
 blueBird.color;
@@ -153,12 +160,19 @@ Just like any other object, its properties can be accessed and modified:
 blueBird.name = 'Elvira';
 blueBird.name;
 
-Use the Dog constructor from the last lesson to create a new instance of Dog, assigning it to a variable hound.*/
+Use the Dog constructor from the last lesson to create a new instance of Dog, 
+assigning it to a variable hound.*/
+
 let hound = new Dog4();
 console.log(hound);
 
 /**         Extend Constructors to Receive Arguments
-The Bird and Dog constructors from the last challenge worked well. However, notice that all Birds that are created with the Bird constructor are automatically named Albert, are blue in color, and have two legs. What if you want birds with different values for name and color? It's possible to change the properties of each bird manually but that would be a lot of work:
+The Bird and Dog constructors from the last challenge worked well. 
+However, notice that all Birds that are created with the Bird 
+constructor are automatically named Albert, are blue in color, 
+and have two legs. What if you want birds with different values 
+for name and color? It's possible to change the properties of each 
+bird manually but that would be a lot of work:
 
  */
 
@@ -167,7 +181,13 @@ swan.name = "Carlos";
 swan.color = "White";
 console.log(swan);
 
-/**Suppose you were writing a program to keep track of hundreds or even thousands of different birds in an aviary. It would take a lot of time to create all the birds, then change the properties to different values for every one. To more easily create different Bird objects, you can design your Bird constructor to accept parameters: */
+/**Suppose you were writing a program to keep track of hundreds or 
+even thousands of different birds in an aviary. 
+It would take a lot of time to create all the birds, 
+then change the properties to different values for every one. 
+
+To more easily create different Bird objects, you can design your 
+Bird constructor to accept parameters: */
 
 function Birds(name, color) {
     this.name = name;
@@ -175,28 +195,47 @@ function Birds(name, color) {
     this.numLegs = 2;
 }
 
-/**Then pass in the values as arguments to define each unique bird into the Bird constructor: let cardinal = new Bird("Bruce", "red"); This gives a new instance of Bird with name and color properties set to Bruce and red, respectively. The numLegs property is still set to 2. The cardinal has these properties: */
+/**Then pass in the values as arguments to define each unique 
+bird into the Bird constructor: 
+
+let cardinal = new Bird("Bruce", "red"); This gives a new instance of Bird 
+with name and color properties set to Bruce and red, respectively. 
+
+The numLegs property is still set to 2. 
+The cardinal has these properties: */
 let cardinal = new Birds("Bruce", "Red")
 console.log(cardinal);
 
-/**The constructor is more flexible. It's now possible to define the properties for each Bird at the time it is created, which is one way that JavaScript constructors are so useful. They group objects together based on shared characteristics and behavior and define a blueprint that automates their creation.
+/**The constructor is more flexible. 
+It's now possible to define the properties for each Bird 
+at the time it is created, which is one way that 
+JavaScript constructors are so useful. 
+
+They group objects together based on shared characteristics 
+and behavior and define a blueprint that automates their creation.
  * 
- * Create another Dog constructor. This time, set it up to take the parameters name and color, and have the property numLegs fixed at 4. Then create a new Dog saved in a variable terrier. Pass it two strings as arguments for the name and color properties.
+ * Create another Dog constructor. This time, set it up to take the 
+parameters name and color, and have the property numLegs fixed at 4. Then create a new Dog saved in a variable terrier. Pass it two strings as arguments for the name and color properties.
  */
+
 function Adog(name, color) {
     this.name = name;
     this.color = color;
     this.numLegs = 4;
 }
 let terrier = new Adog("Screamer", "Grey");
-console.log(terrier);
+console.log(terrier);// returns Screamer, Grey
 
-/**Verify an Object's Constructor with instanceof
+/**   Verify an Object's Constructor with instanceof
+
 Anytime a constructor function creates a new object, 
 that object is said to be an instance of its constructor. 
-JavaScript gives a convenient way to verify this with the instanceof operator. 
+JavaScript gives a convenient way to verify this with 
+the instanceof operator. 
+
 instanceof allows you to compare an object to a constructor, 
-returning true or false based on whether or not that object was created with the constructor. 
+returning true or false based on whether or not that 
+object was created with the constructor. 
 Here's an example: */
 
 let Bird1 = function(name, color){
@@ -227,10 +266,11 @@ function House(numBedrooms) {
     this.numBedrooms = numBedrooms
 }
 let myHouse = new House(5);
-console.log(myHouse instanceof House);
+console.log(myHouse instanceof House);// returns true
 
 /**             Understand Own Properties
-In the following example, the Bird constructor defines two properties: name and numLegs: */
+In the following example, the Bird constructor defines 
+two properties: name and numLegs: */
 
 function Bird2(name) {
     this.name = name;
@@ -241,9 +281,13 @@ let canary = new Bird("Tweety");
 
 /**name and numLegs are called own properties, 
  * because they are defined directly on the instance object. 
- * That means that duck and canary each has its own separate copy of these properties. 
- * In fact every instance of Bird will have its own copy of these properties. 
- * The following code adds all of the own properties of duck to the array ownProps:
+ * That means that duck and canary each has its own separate 
+ * copy of these properties. 
+ * In fact every instance of Bird will have its own copy of 
+ * these properties. 
+
+ * The following code adds all of the own properties of duck to the 
+ * array ownProps:
  */
 
 let ownProps = [];
@@ -256,6 +300,7 @@ for (let property in duck4) {
 console.log(ownProps);
 
 /**The console would display the value ["name", "numLegs"]. */
+
 function Occassions(weddings, proms, xmasparty) {
     this.weddings = weddings;
     this.proms = proms;
@@ -280,6 +325,7 @@ for (let person in myWedding){
 console.log(guess);
 
 /**Use Prototype Properties to Reduce Duplicate Code
+
 Since numLegs will probably have the same value for all instances of Bird, 
 you essentially have a duplicated variable numLegs inside each Bird instance.
 
@@ -296,10 +342,13 @@ Bird2.prototype.numLegs = 2;
 
 console.log(duck.numLegs);
 console.log(canary.numLegs);
+
 /**Since all instances automatically have the properties on the prototype, 
  think of a prototype as a "recipe" for creating objects. 
+
  Note that the prototype for duck and canary is part of the 
  Bird constructor as Bird.prototype. 
+
  Nearly every object in JavaScript has a prototype 
  property which is part of the constructor function that created it.
  * 
@@ -322,8 +371,10 @@ let beagle = new Dog("Snoopy")
 console.log(beagle);
 
 /**         Iterate Over All Properties
+
 You have now seen two kinds of properties: own properties 
 and prototype properties. 
+
 Own properties are defined directly on the object instance itself. 
 And prototype properties are defined on the prototype. */
 
@@ -387,9 +438,10 @@ let dedog = new Dog();
 console.log(deduck.constructor === Bird2);
 console.log(dedog.constructor === Dog);
 
-/**Both of these console.log calls would display true in the console.
+/**Both of these console.log calls would display true 
+in the console.
 
-Note that the constructor property is a reference to 
+Note: that the constructor property is a reference to 
 the constructor function that created the instance. 
 The advantage of the constructor property 
 is that it's possible to check for this property to find out
@@ -403,7 +455,8 @@ function joinBirdFraternity(candidate) {
          return false;
     }
 }
-/**Note: Since the constructor property can be 
+
+/** Note: Since the constructor property can be 
  * overwritten (which will be covered in the next two challenges) 
  * it’s generally better to use the instanceof method to check the type of an object.
  * 
@@ -421,14 +474,15 @@ function JoinDogFraternity(candidate) {
     }
 }
 
-/**Change the Prototype to a New Object
+/**  Change the Prototype to a New Object
 Up until now you have been adding properties to the prototype individually:
 
 Bird.prototype.numLegs = 2;
 This becomes tedious after more than a few properties.
 
  */
-Bird2.prototype.numLegs = 2
+Bird2.prototype.numLegs = 2;
+
 Bird2.prototype.eat = function(){
     console.log("nom nom nom");
 }
@@ -476,7 +530,7 @@ Dogger.prototype = {
 let puppy = new Dogger("Shakker");
 console.log(puppy);
 
-/**Remember to Set the Constructor Property when Changing the Prototype
+/** Remember to Set the Constructor Property when Changing the Prototype
 There is one crucial side effect of manually setting the prototype to a new object. 
 It erases the constructor property! 
 This property can be used to check which constructor function created the instance,
@@ -485,6 +539,7 @@ This property can be used to check which constructor function created the instan
  console.log(puppy.constructor === Dogger);
  console.log(puppy.constructor === Object);
  console.log(puppy instanceof Dogger);
+
  /**In order, these expressions would evaluate to false, true, and true. 
   * To fix this, whenever a prototype is manually set to a new object, 
   * remember to define the constructor property:
@@ -798,6 +853,7 @@ function Preditor1(anme) {
 let lion = new Preditors("Sweto");
 Preditors.prototype = Object.create(Animals2.prototype);
 console.log(lion);
+<<<<<<< HEAD
 
 /**Reset an Inherited Constructor Property
 When an object inherits its prototype from another object, 
@@ -1053,3 +1109,5 @@ console.log(plane.glide());
 
 
 
+=======
+>>>>>>> e1223069c3b0feb69c70adc0411ee0f17eae803f
