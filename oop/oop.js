@@ -853,7 +853,6 @@ function Preditor1(anme) {
 let lion = new Preditors("Sweto");
 Preditors.prototype = Object.create(Animals2.prototype);
 console.log(lion);
-<<<<<<< HEAD
 
 /**Reset an Inherited Constructor Property
 When an object inherits its prototype from another object, 
@@ -1109,5 +1108,3 @@ console.log(plane.glide());
 
 
 
-=======
->>>>>>> e1223069c3b0feb69c70adc0411ee0f17eae803f
