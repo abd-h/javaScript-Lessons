@@ -1146,3 +1146,179 @@ let glideMixin = function(glider) {
 
 glideMixin(plane);
 console.log(plane.glide());
+
+/**Use Closure to Protect Properties Within an Object 
+ * from Being Modified Externally
+ 
+In the previous challenge, bird had a public property name. 
+It is considered public because it can be accessed and 
+changed outside of bird's definition.
+
+ */
+
+birdA.name = "Duffy";
+
+/**Therefore, any part of your code can easily change 
+ * the name of bird to any value. 
+ * Think about things like passwords and bank accounts 
+ * being easily changeable by any part of your codebase. 
+ * That could cause a lot of issues.
+
+The simplest way to make this public property private is 
+by creating a variable within the constructor function. 
+This changes the scope of that variable to be within the constructor 
+function versus available globally. This way, the variable can only 
+be accessed and changed by methods also within the constructor function.
+ */
+ 
+function PrivateBird(){
+    let hatchedEgg = 10;
+
+    this.hatchedEggCount = function(){
+        return hatchedEgg
+    };
+}
+let greyPigion = new PrivateBird();
+console.log(greyPigion.hatchedEggCount());
+
+/**Here getHatchedEggCount is a privileged method, 
+ * because it has access to the private variable hatchedEgg. 
+ * This is possible because hatchedEgg is declared in the same context as 
+ * getHatchedEggCount. In JavaScript, a function always has access 
+ * to the context in which it was created. This is called closure.
+
+
+Change how weight is declared in the Bird function so it is a private variable. 
+Then, create a method getWeight that returns the value of weight 15.
+ */
+
+function BirdWeight() {
+    let weight = 15;
+
+    this.getWeight = function(){
+        return weight;
+    }
+}
+
+let weight = new BirdWeight();
+console.log(weight.getWeight());
+
+/**Understand the Immediately Invoked Function Expression (IIFE)
+A common pattern in JavaScript is to execute a function as soon as it is declared:
+
+ */
+
+(function() {
+   console.log("Chirp, chirp!");
+})();
+
+/**This is an anonymous function expression that executes right away, 
+ * and outputs Chirp, chirp! immediately.
+
+Note that the function has no name and is not stored in a variable. 
+The two parentheses () at the end of the function expression 
+cause it to be immediately executed or invoked. 
+This pattern is known as an immediately invoked function expression or IIFE. 
+
+Rewrite the function makeNest and remove its call so instead 
+it's an anonymous immediately invoked function expression (IIFE).
+
+function makeNest() {
+  console.log("A cozy nest is ready");
+}
+
+makeNest();*/
+
+(function (){
+    console.log("A cozy nest is ready");
+})();
+
+/**Use an IIFE to Create a Module
+An immediately invoked function expression (IIFE) 
+is often used to group related functionality into a single 
+object or module. For example, an earlier challenge defined two mixins: */
+
+function gliderMixin(obj){
+    obj.glider = function() {
+        console.log("Gliding on the water");
+    };
+}
+
+function flyerMixin(obj) {
+    obj.flyer = function (){
+        console.log("Flying wooosh");
+    };
+}
+
+//We can group these mixins into a module as follows:
+
+let motionModule = (function (){
+    return {
+            gliderMixin: function(obj) {
+            obj.glide = function(){
+               console.log("Gliding on the water");
+            };
+         },
+
+    flyMixin: function(obj){
+        obj.fly = function() {
+            console.log("Flying woosh");
+        };
+      }
+    }
+})();
+
+let birdb = {
+    name: "Donald",
+    numLegs: 2
+};
+
+let planeb = {
+    model: "777",
+    numOfPassengers: 252
+};
+
+
+/**Note that you have an immediately invoked function expression (IIFE) 
+ * that returns an object motionModule. 
+ * This returned object contains all of the mixin behaviors 
+ * as properties of the object. The advantage of the module pattern 
+ * is that all of the motion behaviors can be packaged into a single object 
+ * that can then be used by other parts of your code. Here is an example using it:
+
+ */
+motionModule.flyMixin(planeb);
+motionModule.gliderMixin(birdb);
+console.log(planeb.fly());
+console.log(birdb.glide());
+
+
+/**Create a module named funModule to wrap the two mixins 
+ * isCuteMixin and singMixin. funModule should return an object.
+
+let isCuteMixin = function(obj) {
+  obj.isCute = function() {
+    return true;
+  };
+};
+let singMixin = function(obj) {
+  obj.sing = function() {
+    console.log("Singing to an awesome tune");
+  };
+};
+ */
+
+let funMixin = (function () {
+    return {
+         isCuteMixin: function (obj) {
+            obj.isCute = function () {
+                return true;
+            };
+        },
+        singMix: function(obj){
+            obj.sing = function() {
+                console.log("Sing to an Awsome Tune");
+            }
+        }
+    }
+})();
