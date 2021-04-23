@@ -173,6 +173,8 @@ Change Window.prototype.tabClose so that it removes the correct tab. */
         return this;
     };
 
+    let workWindow = new Window(['GMail', 'Inbox', 'Work mail', 'Docs', 'freeCodeCamp']);
+
 
 
 
