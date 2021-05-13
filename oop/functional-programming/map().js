@@ -205,6 +205,16 @@
         year: items.Year
     }))
     console.log(ratings);
+
+    let s1 = [23, 65, 98, 5];
+ Array.prototype.myMap = function(callback){
+    let newArray = [];
+    s1.forEach((item) => (newArray.push(item * 2)));
+    return newArray;
+}
+console.log(Array.prototype.myMap());
+
+
     /**Definitions
     The map method receives a function as a parameter. 
     Then it applies it on each element and returns an entirely new array 
@@ -275,9 +285,12 @@ as you might guess, it returns undefined. */
 //const unchainable = myAwsomeArray.forEach(x => x * x).reduce((total, value) => total + value);
 //console.log(unchainable);
 //returns Uncaught TypeError: Cannot read property 'reduce' of undefined
-
+let x1 =[];
 const chainable = myAwsomeArray
-                             .map(x => x * x)
+                             .map((x) => x * 2)
                              .reduce((total, value) => total + value);
 
- console.log(chainable);                            
+ console.log(chainable);   
+
+ 
+
