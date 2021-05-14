@@ -157,7 +157,12 @@ var watchList = [
   }
 ];
 
-/**The variable watchList holds an array of objects with information on several movies. Use a combination of filter and map on watchList to assign a new array of objects with only title and rating keys. The new array should only include objects where imdbRating is greater than or equal to 8.0. Note that the rating values are saved as strings in the object and you may need to convert them into numbers to perform mathematical operations on them. */
+/**The variable watchList holds an array of objects with information on 
+ * several movies. Use a combination of filter and map on 
+ * watchList to assign a new array of objects with only title and rating keys. 
+ * The new array should only include objects where imdbRating is greater than or equal to 8.0. 
+ * Note that the rating values are saved as strings in the object and you may 
+ * need to convert them into numbers to perform mathematical operations on them. */
 
 // Only change code below this line
 // function string(str) {
@@ -177,3 +182,21 @@ var filteredList = watchList
 
 console.log(filteredList);
 // console.log(string("8"));
+
+/**Implement the filter Method on a Prototype
+You might learn a lot about the filter method if you implement 
+your own version of it. It is recommended you use a for loop or 
+Array.prototype.forEach().
+
+Write your own Array.prototype.myFilter(), which should behave exactly like 
+Array.prototype.filter(). You should not use the built-in filter method. 
+The Array instance can be accessed in the myFilter method using this.*/
+
+
+// The Global Veriable
+
+let s = [23, 65, 98, 5];
+Array.prototype.myFilter = function (callback) {
+    let newArray = [];
+    
+}
