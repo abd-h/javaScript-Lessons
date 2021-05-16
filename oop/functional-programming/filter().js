@@ -198,5 +198,62 @@ The Array instance can be accessed in the myFilter method using this.*/
 let s = [23, 65, 98, 5];
 Array.prototype.myFilter = function (callback) {
     let newArray = [];
+  for(let i = 0; i < this.length; i++){
+    if (callback(this[i], i , this)) {
+      newArray.push(this[i])
+    }
+  }
+    return newArray;
+  }
+
+let new_s = s.myFilter(function (item) {
+  return item % 2 ===1;
+});
+console.log(new_s);
+console.log(s);
+
+/**
+ * // filter takes an array and function as argumentfunction 
+ * filter(arr, filterFunc) {    
+ * const filterArr = []; // empty array        
+ * // loop though array    
+ * for(let i=0;i<arr.length;i++) {        
+ * const result = filterFunc(arr[i], i, arr);        
+ * // push the current element if result is true        
+ * if(result)             filterArr.push(arr[i]);
+ *      
+ * }    
+ * return filterArr;
+ * }
+ */
+
+const sa1 = [23,48,56, 64, 5];
+const sa2 = [23,45,56, 64, 5];
+
+Array.prototype.element = function(item) {
+  let sat = [];
+  this.forEach(function (callback) {
+    if(item(callback) == true){
+      sat.push(callback);
+    }
     
-}
+  });
+  return sat;
+};
+  
+let new_b = sa1.element((item => item % 2 === 1));
+console.log(new_b);
+
+Array.prototype.filterList = function (num){
+  let base = [];
+  console.log(this);
+  for(let i = 0; i < this.length; i++){
+    if(num(this[i], i, this)){
+      base.push(this[i])
+    }
+  }
+  return base;
+};
+
+let numbers = sa2.filterList((item => item % 2== 1));
+console.log(numbers);
