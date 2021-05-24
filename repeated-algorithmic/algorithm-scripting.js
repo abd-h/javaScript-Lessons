@@ -205,13 +205,94 @@ words like the and of.
 
 function titleCase(str) {
     let lowerCase = str.toLowerCase().split(" ")  
-    let c = lowerCase.map(x => {
-       return  x[0].toUpperCase() + x.slice(1)
-        
+    let c = [];
+    lowerCase.forEach(x => {
+        c.push(x[0].toUpperCase() + x.slice(1));
+       return c ;
     });
-    return c.join("  ")
+    return c.join("  ");
             
 }
 
 console.log(titleCase("I'm a little tea pot"));
 console.log(titleCase("HERE IS MY HANDLE HERE IS MY SPOUT"));
+
+/*Slice and SplicePassed
+You are given two arrays and an index.
+
+Copy each element of the first array into the second array, in order.
+
+Begin inserting elements at index n of the second array.
+
+Return the resulting array. The input arrays should remain the same after the function runs.
+
+*/
+
+function frankenSplice(arr, arr2, n){
+    let a = arr2.slice();
+    a.splice(n, 0, ...arr)
+    return a;
+}
+console.log(frankenSplice([1, 2, 3], [4, 5, 6], 1)
+);
+
+/*Falsy BouncerPassed
+Remove all falsy values from an array.
+
+Falsy values in JavaScript are false, null, 0, "", undefined, and NaN.
+
+Hint: Try converting each value to a Boolean.*/
+
+function bouncer(arr) {
+    return arr.filter(x => Boolean(x));
+}
+console.log(bouncer([7, "ate", "", false, 9]));
+//returns[7, "ate", 9]
+console.log(bouncer(["a", "b", "c"]));
+//returns ["a", "b", "c"]
+console.log(bouncer([false, null, 0, NaN, undefined, ""]));
+// returns []
+console.log(bouncer([null, NaN, 1, 2, undefined]));
+// returns [1, 2]
+
+/*Where do I BelongPassed
+Return the lowest index at which a value (second argument) should be inserted into an array (first argument) once it has been sorted. The returned value should be a number.
+
+For example, getIndexToIns([1,2,3,4], 1.5) should return 1 because it is greater than 1 (index 0), but less than 2 (index 1).
+
+Likewise, getIndexToIns([20,3,5], 19) should return 2 because once the array has been sorted it will look like [3,5,20] and 19 is less than 20 (index 2) and greater than 5 (index 1).
+
+*/
+
+function getIndexToIns(arr, num) {
+    let a =arr.slice();
+ a.splice(0,0, num);
+   
+   
+  a.sort((a, b) => (a === b)? 0 : (a > b)? 1 : -1)
+ 
+   return a.indexOf(num);
+               
+}
+console.log(getIndexToIns([40, 60], 50));
+// returns 1
+console.log(getIndexToIns([10, 20, 30, 40, 50], 35));
+//returns 3
+console.log(getIndexToIns([10, 20, 30, 40, 50], 30));
+//returns 2
+
+
+/*MutationsPassed
+Return true if the string in the first element of the array 
+contains all of the letters of the string in the second element of the array.
+
+For example, ["hello", "Hello"], should return true because all 
+of the letters in the second string are present in the first, ignoring case.
+
+The arguments ["hello", "hey"] should return false because 
+the string hello does not contain a y.
+
+Lastly, ["Alien", "line"], should return true because 
+all of the letters in line are present in Alien.
+
+*/

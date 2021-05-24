@@ -72,3 +72,9 @@ function nonMutatingSort(arr) {
                 : -1)
 }
 console.log(nonMutatingSort([1, 30, 4, 21, 100000]));
+
+let orderArr = globalArray.slice()
+                   .concat([])
+                   .sort((a, b) => (a === b)? 0 :(a > b)? 1 : -1);
+
+console.log(orderArr);                   
