@@ -296,3 +296,22 @@ Lastly, ["Alien", "line"], should return true because
 all of the letters in line are present in Alien.
 
 */
+function mutation(arr) {
+   
+  
+
+  let b = arr[1].toLowerCase();
+  let c = arr[0].toLowerCase();
+  for(let i = 0; i < b.length; i++) {
+      if(c.indexOf(b[i]) < 0){
+          return false;
+      }
+     
+  }
+ return true;
+
+
+}
+console.log(mutation(["Hellommnm", "hay"]))
+console.log(mutation(["hello", "Hello"]))
+console.log(mutation(["zyxwvutsrqponmlkjihgfedcba", "qrstu"]))
