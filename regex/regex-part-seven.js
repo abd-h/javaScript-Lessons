@@ -226,4 +226,4 @@ let myNewString = "Eleanor Roosevelt";
 let myNewString2 = "Franklin D Roosevelt";
 let myRegex = /(Franklin(.+)|Eleanor)(Roosevelt)/i;
 let myResult1 = myRegex.test(myNewString2) 
-console.log(myResult1);
+console.log(myResult1); //returns true
