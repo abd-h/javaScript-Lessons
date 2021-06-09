@@ -225,5 +225,106 @@ let result = false; // Change this line
 let myNewString = "Eleanor Roosevelt";
 let myNewString2 = "Franklin D Roosevelt";
 let myRegex = /(Franklin(.+)|Eleanor)(Roosevelt)/i;
+//let myRegex = /(Franklin | Eleanor).*Roosevelt/; this works as well.
 let myResult1 = myRegex.test(myNewString2) 
 console.log(myResult1); //returns true
+
+/*  Reuse Patterns Using Capture Groups
+
+Some patterns you search for will occur multiple times in a string. 
+It is wasteful to manually repeat that regex. There is a better way 
+to specify when you have multiple repeat substrings in your string.
+
+You can search for repeat substrings using capture groups. 
+Parentheses, ( and ), are used to find repeat substrings. You put the regex 
+of the pattern that will repeat in between the parentheses.
+
+To specify where that repeat string will appear, you use a backslash (\) and 
+then a number. This number starts at 1 and increases with each additional capture 
+group you use. An example would be \1 to match the first group.
+
+The example below matches any word that occurs twice separated by a space:
+*/
+let repeatedStr = "regex regex";
+let repeatRegex = /(\w+)\s\1/;
+console.log(repeatRegex.test(repeatedStr));
+console.log(repeatedStr.match(repeatRegex));
+
+/*The test call would return true, and the match call would return ["regex regex", "regex"].
+
+Using the .match() method on a string will return an array with the string it matches, 
+along with its capture group.
+
+Q) Use capture groups in reRegex to match a string that consists of only 
+the same number repeated exactly three times separated by single spaces.
+
+let repeatNum = "42 42 42";
+let reRegex = /change/; // Change this line
+let result = reRegex.test(repeatNum);
+*/
+
+let repeatNum = "42 42 42";
+let reRegex = /^(\d+)\s\1\s\1$/;
+let reResult = reRegex.test(repeatNum);
+console.log(reResult);
+console.log(repeatNum.match(reRegex));
+
+/*      Use Capture Groups to Search and Replace
+
+Searching is useful. However, you can make searching even more powerful 
+when it also changes (or replaces) the text you match.
+
+You can search and replace text in a string using .replace() on a string. 
+The inputs for .replace() is first the regex pattern you want to search for. 
+The second parameter is the string to replace the match or a function to do something.*/
+
+let  wrongText = "The sky is silver";
+let silverRegex = /silver/;
+console.log(wrongText.replace(silverRegex, "blue"));
+
+/*The replace call would return the string The sky is blue..
+
+You can also access capture groups in the replacement string with dollar signs ($).*/
+
+console.log("Code Camp".replace(/(\w+)\s(\w+)/, "$2 $1"));
+/*The replace call would return the string Camp Code.
+
+Q) Write a regex fixRegex using three capture groups that will search for 
+each word in the string one two three. Then update the replaceText 
+variable to replace one two three with the string three two one and assign 
+the result to the result variable. Make sure you are utilizing capture groups 
+in the replacement string using the dollar sign ($) syntax.
+
+let str = "one two three";
+let fixRegex = /change/; // Change this line
+let replaceText = ""; // Change this line
+let result = str.replace(fixRegex, replaceText);
+*/
+
+let str = "one two three";
+let fixRegex  = /(\w+)\s(\w+)\s(\w+)/;
+let replaceText = "$3 $2 $1";
+let strResult = str.replace(fixRegex, replaceText)
+console.log(strResult);// returns three two one;
+
+/*      Remove Whitespace from Start and End
+
+Sometimes whitespace characters around strings are not wanted but are there. 
+Typical processing of strings is to remove the whitespace at the start and end of it.
+
+Q) Write a regex and use the appropriate string methods to remove whitespace 
+at the beginning and end of strings.
+
+Note: The String.prototype.trim() method would work here, but you'll need to complete this challenge using regular expressions.
+
+let hello = "   Hello, World!  ";
+let wsRegex = /change/; // Change this line
+let result = hello; // Change this line*/
+
+let hello = " Hello, World! ";
+let wsRegex = /^\s|.(\w+)\s(\w+)|[\s]$/;
+let wsResult = hello.replace(wsRegex, "");
+console.log(wsResult);
+
+
+
