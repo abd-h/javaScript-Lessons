@@ -325,6 +325,6 @@ let hello = " Hello, World! ";
 let wsRegex = /^\s|.(\w+)\s(\w+)|[\s]$/;
 let wsResult = hello.replace(wsRegex, "");
 console.log(wsResult);
-
+`
 
 
