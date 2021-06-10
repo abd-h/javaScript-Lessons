@@ -1,5 +1,6 @@
 /*      .slice
           .spread  
+          indexOf
 
 Copy Array Items Using slice()
 
@@ -130,3 +131,168 @@ function spreadOut() {
 }
 console.log(spreadOut());
 
+/* Check For The Presence of an Element With indexOf()
+Since arrays can be changed, or mutated, at any time, there's no guarantee 
+about where a particular piece of data will be on a given array, or if that element 
+even still exists. 
+
+Luckily, JavaScript provides us with another built-in method, indexOf(), that allows us 
+to quickly and easily check for the presence of an element on an array. indexOf() takes 
+an element as a parameter, and when called, it returns the position, or index, of that element, or -1 if the element does not exist on the array.
+
+For example:*/
+
+let fruits = ['apples', 'pears', 'oranges', 'peaches', 'pears'];
+console.log(fruits.indexOf("dates"));
+console.log(fruits.indexOf("oranges"));
+console.log(fruits.indexOf("pears"));
+/*indexOf('dates') returns -1, indexOf('oranges') returns 2, and indexOf('pears') returns 1 
+(the first index at which each element exists).
+
+indexOf() can be incredibly useful for quickly checking for the presence of an element on an array. 
+We have defined a function, quickCheck, that takes an array and an element as arguments. 
+Modify the function using indexOf() so that it returns true if the passed element exists on the array, 
+888sand false if it does not.
+
+function quickCheck(arr, elem) {
+  // Only change code below this line
+
+  // Only change code above this line
+}
+
+console.log(quickCheck(['squash', 'onions', 'shallots'], 'mushrooms'));
+
+*/
+function quickCheck(arr, elem) {
+    if (arr.indexOf(elem) === -1){
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+console.log(quickCheck(['squash', 'onions', 'shallots'], 'mushrooms'));
+//returns false;
+
+/*  Iterate Through All an Array's Items Using For Loops
+
+Sometimes when working with arrays, it is very handy to be able to iterate through
+ each item to find one or more elements that we might need, or to manipulate an array 
+ based on which data items meet a certain set of criteria. JavaScript offers several built in 
+ methods that each iterate over arrays in slightly different ways to achieve different results 
+ (such as every(), forEach(), map(), etc.), however the technique which is most flexible and 
+ offers us the greatest amount of control is a simple for loop.
+ 
+ consider the following*/
+
+ function greaterThanTen(arr) {
+     let newArr = [];
+     for (let i = 0;  i < arr.length; i++){
+         if (arr[i] > 10) {
+             arr[i];
+             newArr.push(arr[i]);
+         }
+     }
+     return newArr;
+ }
+ console.log(greaterThanTen([2, 12, 8, 14, 80, 0, 1]));
+
+ /*We have defined a function, filteredArray, which takes arr, a nested array, 
+ and elem as arguments, and returns a new array. elem represents an element 
+ that may or may not be present on one or more of the arrays nested within arr. 
+ Modify the function, using a for loop, to return a filtered version of the passed 
+ array such that any array nested within arr containing elem has been removed.
+ 
+ function filteredArray(arr, elem) {
+  let newArr = [];
+  // Only change code below this line
+
+  // Only change code above this line
+  return newArr;
+}
+
+console.log(filteredArray([[3, 2, 3], [1, 6, 3], [3, 13, 26], [19, 3, 9]], 3));*/
+
+function filteredArray(arr, elem) {
+    let newArr = [];
+    for (let i = 0; i < arr.length; i++){
+        if(arr[i].indexOf(elem) === -1) {
+            newArr.push(arr[i])
+        }
+    }
+    return newArr
+}
+console.log(filteredArray([[3, 2, 3], [1, 6, 3], [3, 13, 26], [19, 3, 9]], 3));
+
+/*  Create complex multi-dimensional arrays
+
+Awesome! You have just learned a ton about arrays! This has been a fairly high level overview, 
+and there is plenty more to learn about working with arrays, much of which you will see in later sections. 
+But before moving on to looking at Objects, lets take one more look, and see how arrays can become 
+a bit more complex than what we have seen in previous challenges.
+
+One of the most powerful features when thinking of arrays as data structures, is that arrays can contain, 
+or even be completely made up of other arrays. We have seen arrays that contain arrays in previous challenges, 
+but fairly simple ones. However, arrays can contain an infinite depth of arrays that can contain other arrays, 
+each with their own arbitrary levels of depth, and so on. In this way, an array can very quickly become very 
+complex data structure, known as a multi-dimensional, or nested array. Consider the following example:
+*/
+
+let nestedArrays = [
+    ["Deep"],
+    [
+        ["Deeper"], ["Deeper"]
+    ],
+    [
+        [
+            ["Deepest"]
+        ],
+        [
+            [
+                ["Deepest-est?"]
+            ]
+        ]
+    ]
+];
+
+/*The deep array is nested 2 levels deep. The deeper arrays are 3 levels deep. 
+The deepest arrays are 4 levels, and the deepest-est? is 5.
+
+While this example may seem convoluted, this level of complexity is not unheard of, or even unusual, 
+when dealing with large amounts of data. However, we can still very easily access the deepest levels 
+of an array this complex with bracket notation:*/
+
+console.log(nestedArrays[2][1][0]); // returns deepest-est;
+
+/*This logs the string deepest-est?. And now that we know where that piece of data is, 
+we can reset it if we need to:
+*/
+
+nestedArrays[2][1][0] = "Deeper still";
+console.log(nestedArrays);
+
+/*We have defined a variable, myNestedArray, set equal to an array. 
+Modify myNestedArray, using any combination of strings, numbers, and booleans for data elements, 
+so that it has exactly five levels of depth (remember, the outer-most array is level 1). 
+Somewhere on the third level, include the string deep, on the fourth level, include the string deeper, 
+and on the fifth level, include the string deepest.
+
+let myNestedArray = [
+  // Only change code below this line
+  ['unshift', false, 1, 2, 3, 'complex', 'nested'],
+  ['loop', 'shift', 6, 7, 1000, 'method'],
+  ['concat', false, true, 'spread', 'array'],
+  ['mutate', 1327.98, 'splice', 'slice', 'push'],
+  ['iterate', 1.3849, 7, '8.4876', 'arbitrary', 'depth']
+  // Only change code above this line
+];*/
+
+let myNestedArray = [[
+ 
+  ['unshift', false, 1, 2, 3, 'complex', 'nested', ["deep"]],
+  ['loop', 'shift', 6, 7, 1000, 'method'],
+  ['concat', false, true, 'spread', 'array', [["deeper"]]],
+  ['mutate', 1327.98, 'splice', 'slice', 'push', [[["deepest"]]]],
+  ['iterate', 1.3849, 7, '8.4876', 'arbitrary', 'depth']
+]];
+console.log(myNestedArray[0][3][5]);
