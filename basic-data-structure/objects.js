@@ -126,9 +126,15 @@ for a supermarket cash register. We have some function that sets the selectedFoo
 and we want to check our foods object for the presence of that food. 
 This might look like:
 */
+function currentFoods(scannedItem){
+    return foods[scannedItem];
+}
 
-// let selectedFood = currentFoods(scannedItem);
-// let inventory = foods[selectedFood];
+let selectedFood = currentFoods("apples");
+console.log(selectedFood);
+
+let inventory = foods.selectedFood;
+console.log(inventory);
 
 /*  This code will evaluate the value stored in the selectedFood variable 
 and return the value of that key in the foods object, or undefined if it is not present. 
@@ -215,3 +221,97 @@ delete fruites.oranges;
 delete fruites.plums;
 delete fruites.strawberries;
 console.log(fruites);
+
+
+/*      Check if an Object has a Property
+
+Now we can add, modify, and remove keys from objects. But what if we just wanted to know 
+if an object has a specific property? JavaScript provides us with two different ways to do this. 
+One uses the hasOwnProperty() method and the other uses the in keyword. If we have 
+an object footballPlayers.manUnited with a property of goalKeeper, we could check 
+for its presence in either of the following ways:*/
+
+let footballPlayers = {
+    manUnited: {
+        goalKeeper: "Mike Henderson",
+        centeralDefeder: "Baily"
+    }
+}
+console.log(footballPlayers.manUnited.hasOwnProperty("goalKeeper"));
+console.log("goalKeeper" in footballPlayers.manUnited);
+/*Both cases return trues;
+
+Finish writing the function so that it returns true if the object passed 
+to it contains all four names, Alan, Jeff, Sarah and Ryan and returns f
+alse otherwise.
+
+let users = {
+  Alan: {
+    age: 27,
+    online: true
+  },
+  Jeff: {
+    age: 32,
+    online: true
+  },
+  Sarah: {
+    age: 48,
+    online: true
+  },
+  Ryan: {
+    age: 19,
+    online: true
+  }
+};
+
+function isEveryoneHere(userObj) {
+  // Only change code below this line
+  
+  // Only change code above this line
+}
+
+console.log(isEveryoneHere(users));*/
+
+let users = {
+    Alan: {
+        age : 27,
+    online: true
+    },
+    jef: {
+        age: 32,
+        online: true
+    },
+    Sarah: {
+        age: 48,
+        online: true
+    },
+    Ryan: {
+        age: 19,
+        online: true
+    }
+};
+console.log(users);
+
+function isEveryoneHere(userObj){   
+    if  ("Alan" in userObj && "jef" in userObj && "Sarah"  in userObj && "Ryan" in userObj) {
+        return true;
+    }
+    else {
+        return false;
+    }
+
+}
+
+console.log(isEveryoneHere(users));
+
+if  (
+    userObj.hasOwnProperty("Alan") && 
+    userObj.hasOwnProperty("Jeff") &&
+    userObj.hasOwnProperty("Sarah") &&
+    userObj.hasOwnProperty("Ryan")
+  ) {
+        return true;
+    }
+    else {
+    return  false;
+    }
