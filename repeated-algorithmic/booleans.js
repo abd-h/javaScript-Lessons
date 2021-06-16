@@ -105,9 +105,208 @@ testEqual(10);
 //Setup
 function testEquality(val) {
     if (val == "12"){
-        return " Equal";
+        return "Equal";
     }
     return "False";
 }
 
 console.log(testEquality(12));
+
+/*      Comparison with the Strict Equality Operator
+Strict equality (===) is the counterpart to the equality operator (==). However, 
+unlike the equality operator, which attempts to convert both values being compared t
+o a common type, the strict equality operator does not perform a type conversion.
+
+If the values being compared have different types, they are considered unequal, and 
+the strict equality operator will return false.
+
+Examples
+*/
+3 === 3 // returns true
+3 ==="3" // returns false
+/*In the second example, 3 is a Number type and '3' is a String type.
+
+Use the strict equality operator in the if statement so the function will return 
+the string Equal when val is strictly equal to 7
+
+// Setup
+function testStrict(val) {
+  if (val) { // Change this line
+    return "Equal";
+  }
+  return "Not Equal";
+}
+
+testStrict(10);*/
+
+// Setup
+function testStrict(val) {
+    if (val === 7) {
+        return "Equal";
+    }
+    return "Unequal"
+}
+console.log(testStrict(10));
+
+/*Practice comparing different values
+In the last two challenges, we learned about the equality operator (==) 
+and the strict equality operator (===). Let's do a quick review and practice 
+using these operators some more.
+
+If the values being compared are not of the same type, the equality operator 
+will perform a type conversion, and then evaluate the values. However, the 
+strict equality operator will compare both the data type and value as-is, without 
+converting one type to the other.
+
+Examples
+
+3 == '3' returns true because JavaScript performs type conversion from string to number. 
+3 === '3' returns false because the types are different and type conversion is not performed.
+
+Note: In JavaScript, you can determine the type of a variable or a value with the typeof operator, 
+as follows: */
+typeof 3;
+typeof "3"; 
+/*typeof 3 returns the string number, and typeof '3' returns the string string.
+
+The compareEquality function in the editor compares two values using the equality operator. 
+Modify the function so that it returns the string Equal only when the values are strictly equal.
+
+compareEquality(10, "10") should return the string Not Equal
+
+compareEquality("20", 20) should return the string Not Equal
+
+You should use the === operator
+
+// Setup
+function compareEquality(a, b) {
+  if (a == b) { // Change this line
+    return "Equal";
+  }
+  return "Not Equal";
+}
+
+compareEquality(10, "10");*/
+
+// Setup
+
+function compareEquality(a, b) {
+    if (a === b) {
+        return "Equal";
+    }
+    return "Not Equal"
+}
+console.log(compareEquality(10, "10"));
+
+/*      Comparison with the Inequality Operator
+
+The inequality operator (!=) is the opposite of the equality operator. It means not equal and returns false where equality would return true and vice versa. Like the equality operator, the inequality operator will convert data types of values while comparing.*/
+1 != 2
+1!= "1"
+1 != '1' 
+1 != true
+0 != false
+
+/*In order, these expressions would evaluate to true, false, false, false, and false.
+
+Add the inequality operator != in the if statement so that the function will return the string Not Equal when val is not equivalent to 99
+
+// Setup
+function testNotEqual(val) {
+  if (val) { // Change this line
+    return "Not Equal";
+  }
+  return "Equal";
+}
+
+testNotEqual(10);*/
+
+function testNotEqual(val){
+    if (val != 99){
+        return "Not Equal";
+    }
+    return "Equal";
+}
+console.log(testNotEqual(10));
+
+/*          Comparison with the Strict Inequality Operator
+
+The strict inequality operator (!==) is the logical opposite of the strict equality operator. It means "Strictly Not Equal" and returns false where strict equality would return true and vice versa. The strict inequality operator will not convert data types.
+
+Examples */
+
+3 !== 3
+3 !== "3"
+4 !== 3
+
+/*In order, these expressions would evaluate to false, true, and true.
+
+Q) Add the strict inequality operator to the if statement so the function will 
+return the string Not Equal when val is not strictly equal to 17
+
+// Setup
+function testStrictNotEqual(val) {
+  if (val) { // Change this line
+    return "Not Equal";
+  }
+  return "Equal";
+}
+
+testStrictNotEqual(10);*/
+
+function testStrictNotEqual(val){
+    if (val !== 17) {
+        return "Not Equal";
+    } 
+    return "Equal";
+}
+console.log(testStrictNotEqual(10));
+
+/*  Comparison with the Greater Than Operator
+
+The greater than operator (>) compares the values of two numbers. 
+If the number to the left is greater than the number to the right, it returns true. 
+Otherwise, it returns false.
+
+Like the equality operator, the greater than operator will convert data types 
+of values while comparing.
+
+Examples*/
+
+5 > 3;
+7 > '3'
+2 > 3
+'1' > 9
+
+/*In order, these expressions would evaluate to true, true, false, and false.
+
+Add the greater than operator to the indicated lines so that the return statements make sense.
+
+
+function testGreaterThan(val) {
+  if (val) {  // Change this line
+    return "Over 100";
+  }
+
+  if (val) {  // Change this line
+    return "Over 10";
+  }
+
+  return "10 or Under";
+}
+
+testGreaterThan(10);*/
+
+function testGreaterThan(val){
+    if(val >100){
+        return "over 100";
+    }
+    if (val > 10){
+        return "over 10";
+    }
+    return "10 or under"
+}
+
+
+
+
