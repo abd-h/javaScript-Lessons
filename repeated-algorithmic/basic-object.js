@@ -316,7 +316,9 @@ console.log(myDog);
 }*/
 
 /*      Using Objects for Lookups
-Objects can be thought of as a key/value storage, like a dictionary. If you have tabular data, you can use an object to lookup values rather than a switch statement or an if/else chain. This is most useful when you know that your input data is limited to a certain range.
+Objects can be thought of as a key/value storage, like a dictionary. If you have tabular data, 
+you can use an object to lookup values rather than a switch statement or an if/else chain. 
+This is most useful when you know that your input data is limited to a certain range.
 
 Here is an example of a simple reverse alphabet lookup:*/
 
@@ -389,7 +391,398 @@ console.log(phoneticLookup("charlie"));
 /*      Testing Objects for Properties
 
 Sometimes it is useful to check if the property of a given object exists or not. 
-We can use the .hasOwnProperty(propname) method of objects to determine if that object has the given property name. .hasOwnProperty() returns true or false if the property is found or not.
+We can use the .hasOwnProperty(propname) method of objects to determine 
+if that object has the given property name. .hasOwnProperty() returns true or 
+false if the property is found or not.
+*/
+var myObj1 = {
+    top: "hat",
+    bottom: "pants"
+};
+
+console.log(myObj1.hasOwnProperty("top"));
+console.log(myObj1.hasOwnProperty("middle"));
+console.log("bottom" in myObj1); //returns true
+
+/*The first hasOwnProperty returns true, while the second returns false.
+
+Q) Modify the function checkObj to test if an object passed to the function (obj) contains 
+a specific property (checkProp). If the property is found, return that property's value. 
+If not, return "Not Found".
+
+function checkObj(obj, checkProp) {
+  // Only change code below this line
+  return "Change Me!";
+  // Only change code above this line
+}*/
+
+// first way of doing
+function checkObj1(obj, checkProp){
+    if (obj.hasOwnProperty(checkProp) === true) {
+        return obj[checkProp];
+    }
+    else {
+        return "Not Found"
+    }
+}
+ console.log(checkObj1({city: "Seattle"}, "city")); 
+
+// second way to search for property
+function checkObj(obj, checkProp){
+    if(checkProp in obj === true) {
+        return obj[checkProp];
+    }
+    else {
+        return "Not Found"
+    }
+}
+console.log(checkObj({gift: "pony", pet: "kitten", bed: "sleigh"}, "gift"));
+
+
+/*      Manipulating Complex Objects
+
+Sometimes you may want to store data in a flexible Data Structure. 
+A JavaScript object is one way to handle flexible data. They allow for arbitrary 
+combinations of strings, numbers, booleans, arrays, functions, and objects.
+
+Here's an example of a complex data structure:*/
+
+var ourMusic = [
+    {
+        "artist": "Duff Punk",
+        "title": "Homework",
+        "release_year": 1997,
+        "format": [
+            "CD",
+            "Cassette",
+            "LP"
+        ],
+        "gold": true
+    },
+];
+console.log(typeof ourMusic[0]["release_year"]);
+
+/*This is an array which contains one object inside. The object has various pieces 
+of metadata about an album. It also has a nested formats array. If you want to add more album records, 
+you can do this by adding records to the top level array. Objects hold data in a property, which has a 
+key-value format. In the example above, "artist": "Daft Punk" is a property that has a key of artist and a 
+value of Daft Punk. JavaScript Object Notation or JSON is a related data interchange format used to store data.*/
+ourMusic.push({
+  "artist": "Daft Punk",
+  "title": "Homework",
+  "release_year": 1999,
+  "formats": [ 
+    "CD",
+    "Cassette",
+    "LP"
+  ],
+  "gold": true
+});
+console.log(ourMusic);
+/*returns
+0: {    artist: "Duff Punk", title: "Homework", release_year: 1997, 
+        format: (3) ["CD", "Cassette", "LP"], gold: true}
+1: {    artist: "Daft Punk", title: "Homework", release_year: 1999, 
+        format: (3) ["CD", "Cassette", "LP"], gold: true}
+        length: 2
+        
+Note: You will need to place a comma after every object in the array, 
+unless it is the last object in the array.
+
+Q)  Add a new album to the myMusic array. Add artist and title strings, 
+release_year number, and a formats array of strings.
+
+var myMusic = [
+  {
+    "artist": "Billy Joel",
+    "title": "Piano Man",
+    "release_year": 1973,
+    "formats": [
+      "CD",
+      "8T",
+      "LP"
+    ],
+    "gold": true
+  }
+];        */
+
+var myMusic = [
+  {
+    "artist": "Billy Joel",
+    "title": "Piano Man",
+    "release_year": 1973,
+    "formats": [
+      "CD",
+      "8T",
+      "LP"
+    ],
+    "gold": true
+  },
+];  
+
+myMusic.push({
+  "artist": "Daft Punk",
+  "title": "Homework",
+  "release_year": 1999,
+  "formats": [ 
+    "CD",
+    "Cassette",
+    "LP"
+  ],
+  "gold": true
+});
+
+console.log(myMusic);
+
+/*      Accessing Nested Objects
+
+The sub-properties of objects can be accessed by chaining together the dot or bracket notation.
+
+Here is a nested object:
+
+*/
+var ourStorage = {
+    "desk": {
+        "drawer": "Stapler"
+    },
+    "cabinet": {
+        "top drawer": {
+            "folder 1": "a folder",
+            "folder 2": "secrets"
+        },
+        "bottom drawer": "soda"
+    }
+};
+console.log(ourStorage.cabinet["top drawer"]["folder 2"]);
+console.log(ourStorage.desk.drawer);
+
+/*ourStorage.cabinet["top drawer"].folder2 would be the string secrets,
+ and ourStorage.desk.drawer would be the string stapler.
+
+Q) Access the myStorage object and assign the contents of the glove box property 
+to the gloveBoxContents variable. Use dot notation for all properties where possible, 
+otherwise use bracket notation.
+
+var myStorage = {
+  "car": {
+    "inside": {
+      "glove box": "maps",
+      "passenger seat": "crumbs"
+     },
+    "outside": {
+      "trunk": "jack"
+    }
+  }
+};
+
+var gloveBoxContents = undefined;*/
+var myStorage = {
+    car: {
+        "inside": {
+            "glove box": "maps",
+            "passenger seat": "crumbs"
+        },
+        "outside": {
+            "trunk": "jack"
+        }
+    }
+};
+
+var gloveBoxContents = myStorage.car.inside["glove box"];
+console.log(gloveBoxContents);// returns maps;
+
+/*Accessing Nested Arrays
+
+As we have seen in earlier examples, objects can contain both nested objects and nested arrays. 
+Similar to accessing nested objects, array bracket notation can be chained to access nested arrays.
+
+Here is an example of how to access a nested array:*/
+
+var ourPets = [
+    {
+        animalType: "cat",
+        names: [
+            "Meowzer",
+            "Fluffy",
+            "Kit cat"
+        ]
+    },
+    {
+        animalType: "dog",
+        names: [
+            "Spot",
+            "Bowser",
+            "Franky"
+        ]
+    }
+];
+console.log(ourPets[0].names[1]);
+console.log(ourPets[1]["names"][0]);
+
+/*ourPets[0].names[1] would be the string Fluffy, and ourPets[1].names[0] 
+would be the string Spot.
+
+Q) Using dot and bracket notation, set the variable secondTree to the second item
+ in the trees list from the myPlants object.
+
+
+var myPlants = [
+  {
+    type: "flowers",
+    list: [
+      "rose",
+      "tulip",
+      "dandelion"
+    ]
+  },
+  {
+    type: "trees",
+    list: [
+      "fir",
+      "pine",
+      "birch"
+    ]
+  }
+];
+
+var secondTree = "";
+*/
+
+var myPlants = [
+    {
+        type: "Flowers",
+        list: [
+            "rose",
+            "tulip",
+            "dandelion"
+        ]
+    },
+    {
+        type: "trees",
+        list: [
+            "fir",
+            "pine",
+            "birch"
+        ]
+    }
+];
+
+var secondTree = myPlants[1].list[1];
+console.log(secondTree);
+
+
+
+
+/*      Record Collection
+You are given an object literal representing a part of your musical album collection. Each album has a unique id number as its key and several other properties. Not all albums have complete information.
+
+You start with an updateRecords function that takes an object literal, records, containing the musical album collection, an id, a prop (like artist or tracks), and a value. Complete the function using the rules below to modify the object passed to the function.
+
+    . Your function must always return the entire record collection object.
+
+    . If prop isn't tracks and value isn't an empty string, update or set that 
+    album's prop to value.
+
+    . If prop is tracks but the album doesn't have a tracks property, create 
+    an empty array and add value to it.
+
+    . If prop is tracks and value isn't an empty string, add value to the end 
+    of the album's existing tracks array.
+
+    . If value is an empty string, delete the given prop property from the album.
+
+    . Note: A copy of the recordCollection object is used for the tests.
+
+var recordCollection = {
+  2548: {
+    albumTitle: 'Slippery When Wet',
+    artist: 'Bon Jovi',
+    tracks: ['Let It Rock', 'You Give Love a Bad Name']
+  },
+  2468: {
+    albumTitle: '1999',
+    artist: 'Prince',
+    tracks: ['1999', 'Little Red Corvette']
+  },
+  1245: {
+    artist: 'Robert Palmer',
+    tracks: []
+  },
+  5439: {
+    albumTitle: 'ABBA Gold'
+  }
+};
+
+// Only change code below this line
+function updateRecords(records, id, prop, value) {
+  return records;
+}
+
+updateRecords(recordCollection, 5439, 'artist', 'ABBA');
+
+. Your function must always return the entire record collection object.
+
+    . If prop isn't tracks and value isn't an empty string, update or set that 
+    album's prop to value.
+
+    . If prop is tracks but the album doesn't have a tracks property, create 
+    an empty array and add value to it.
+
+    . If prop is tracks and value isn't an empty string, add value to the end 
+    of the album's existing tracks array.
+
+    . If value is an empty string, delete the given prop property from the album.
+
+    . Note: A copy of the recordCollection object is used for the tests.
 
 */
 
+var  recordCollection = {
+    2548: {
+        albumTitle: 'Slippery When Wet',
+        artist: 'Bon Jovi',
+        tracks: ['Let It Rock', 'You Give Love a Bad Name']
+    },
+    2468: {
+        albumTitle: '1999',
+        artist: 'Prince',
+        tracks: ['1999', 'Little Red Corvette']
+  },
+  1245: {
+    artist: 'Robert Palmer',
+    tracks: []
+  },
+  5439: {
+    albumTitle: 'ABBA Gold'
+  }  
+};
+console.log(recordCollection[2468].tracks);
+
+function updateRecords(records, id, prop, value) {
+  if (prop !== "tracks" && value !== ""){
+       records[id][prop] = value;
+  }
+  else if(prop === "tracks" && "tracks" in records[id] === false) {
+    records[id][prop] = [value];
+  }
+  else if (prop === "tracks" && value !== ""){
+    records[id][prop].push(value);
+  }
+  else if(value === "") {
+       delete records[id][prop];
+  }
+  return records[id][prop];
+
+// if (prop !== 'tracks' && value !== "") {
+//     records[id][prop] = value;
+//   } else if (prop === "tracks" && records[id].hasOwnProperty("tracks") === false) {
+//     records[id][prop] = [value];
+//   } else if (prop === "tracks" && value !== "") {
+//     records[id][prop].push(value);
+//   } else if (value === "") {
+//     delete records[id][prop];
+//   }
+//   return records;
+}
+
+console.log(updateRecords(recordCollection, 5439, 'artist', 'ABBA'));
