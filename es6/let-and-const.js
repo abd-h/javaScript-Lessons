@@ -1,6 +1,8 @@
-    /*Explore Differences Between the var and let KeywordsPassed
-    One of the biggest problems with declaring variables with the var keyword 
-    is that you can overwrite variable declarations without an error.
+    /*Explore Differences Between the var and let Keywords
+
+    One of the biggest problems with declaring variables with 
+    the var keyword  is that you can overwrite variable declarations 
+    without an error.
     */
     var camper = "James";
     var camper = "David";
@@ -13,8 +15,10 @@
     you might not run into this type of problem, but when your code becomes larger, 
     you might accidentally overwrite a variable that you did not intend to overwrite. 
 
-    Because this behavior does not throw an error, searching and fixing bugs becomes more difficult.
-    A new keyword called let was introduced in ES6 to solve this potential issue with the var keyword. 
+    Because this behavior does not throw an error, searching and fixing bugs 
+    becomes more difficult.
+    A new keyword called let was introduced in ES6 to solve this potential issue 
+    with the var keyword. 
     If you were to replace var with let in the variable declarations of the code above, 
     the result would be an error.
 
@@ -142,9 +146,12 @@
 
     /* Declare a Read-Only Variable with the const Keyword
 
-    The keyword let is not the only new way to declare variables. In ES6, you can also declare variables using the const keyword.
+    The keyword let is not the only new way to declare variables. In ES6, 
+    you can also declare variables using the const keyword.
 
-    const has all the awesome features that let has, with the added bonus that variables declared using const are read-only. They are a constant value, which means that once a variable is assigned with const, it cannot be reassigned.*/
+    const has all the awesome features that let has, with the added bonus that 
+    variables declared using const are read-only. They are a constant value, 
+    which means that once a variable is assigned with const, it cannot be reassigned.*/
 
     const FAV_PET = "Cats";
     // FAV_PET = "Dog"; returns error;
@@ -159,14 +166,18 @@
     This helps when you accidentally attempt to reassign 
     a variable that is meant to stay constant. 
 
-    A common practice when naming constants is to use all uppercase letters, with words separated by an underscore.
+    A common practice when naming constants is to use all uppercase letters, 
+    with words separated by an underscore.
 
     Note: It is common for developers to use uppercase variable identifiers 
     for immutable values and lowercase or camelCase for mutable 
     values (objects and arrays). In a later challenge you will see 
     an example of a lowercase variable identifier being used for an array.
 
-    Change the code so that all variables are declared using let or const. Use let when you want the variable to change, and const when you want the variable to remain constant. Also, rename variables declared with const to conform to common practices, meaning constants should be in all caps.
+    Change the code so that all variables are declared using let or const. Use let 
+    when you want the variable to change, and const when you want the variable 
+    to remain constant. Also, rename variables declared with const to conform to 
+    common practices, meaning constants should be in all caps.
 
     function printManyTimes(str) {
 
@@ -244,6 +255,7 @@
     console.log(editInPlace());
 
         /*  Prevent Object Mutation
+        
     As seen in the previous challenge, const declaration alone 
     doesn't really protect your data from mutation. 
     To ensure your data doesn't change, JavaScript provides 
