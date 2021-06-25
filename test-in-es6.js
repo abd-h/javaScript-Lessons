@@ -227,3 +227,148 @@ function removeFirstTwo(list) {
     return arr;
 }
 console.log(removeFirstTwo(source));
+
+/*Use destructuring assignment within the argument to the function 
+half to send only max and min inside the function.
+
+const stats = {
+  max: 56.78,
+  standard_deviation: 4.34,
+  median: 34.54,
+  mode: 23.87,
+  min: -0.75,
+  average: 35.85
+};
+
+// Only change code below this line
+const half = (stats) => (stats.max + stats.min) / 2.0; 
+// Only change code above this line*/
+
+const stats = {
+    max: 56.78,
+    standard_deviation: 4.34,
+    median: 34.54,
+    mode: 23.87,
+    min: -0.75,
+    average: 35.85
+};
+const half = ({min, max}) => (min + max) /2.0;
+console.log(half(stats));
+
+/*Use template literal syntax with backticks to create an array of list element (li) strings. Each list element's text should be one of the array elements from the failure property on the result object and have a class attribute with the value text-warning. The makeList function should return the array of list item strings.
+
+Use an iterator method (any kind of loop) to get the desired output (shown below).
+
+[
+  '<li class="text-warning">no-var</li>',
+  '<li class="text-warning">var-on-top</li>',
+  '<li class="text-warning">linebreak</li>'
+]
+
+
+const result = {
+  success: ["max-length", "no-amd", "prefer-arrow-functions"],
+  failure: ["no-var", "var-on-top", "linebreak"],
+  skipped: ["no-extra-semi", "no-dup-keys"]
+};
+function makeList(arr) {
+  // Only change code below this line
+  const failureItems = [];
+  // Only change code above this line
+
+  return failureItems;
+}
+
+const failuresList = makeList(result.failure);*/
+
+const result = {
+    success: ["max-length", "no-amd", "prefer-arrow-functions"],
+    failure: ["no-var", "var-on-top", "linebreak"],
+    skipped: ["no-extra-semi", "no-dup-keys"]
+};
+function makeList(arr){
+    const failuresList = [];
+   let s = arr.map((a, b) => `<li class="text-warning">${a + b} </li>`);
+    failuresList.push(s);
+    return failuresList;
+}
+console.log(makeList(result.failure));
+
+/*Use object property shorthand with object literals to create and return 
+    an object with name, age and gender properties.
+
+    const createPerson = (name, age, gender) => {
+  // Only change code below this line
+  return {
+    name: name,
+    age: age,
+    gender: gender
+  };
+  // Only change code above this line
+};
+*/
+
+const createPerson = (name, age, gender) => ({name, age, gender});
+console.log(createPerson("Zodiac Hasbro", 56, "male"));
+
+/*Refactor the function setGear inside the object bicycle to use the 
+shorthand syntax described above.
+
+// Only change code below this line
+const bicycle = {
+  gear: 2,
+  setGear: function(newGear) {
+    this.gear = newGear;
+  }
+};
+// Only change code above this line
+bicycle.setGear(3);
+console.log(bicycle.gear);*/
+
+const bicycle = {
+    gear: 2,
+    setGear(newGear){
+      return   `${this.gear  = newGear}`
+    }
+}
+console.log(bicycle.setGear(48));
+
+/*Use the class keyword and write a constructor to create 
+the Vegetable class.
+
+The Vegetable class allows you to create a vegetable object 
+with a property name that gets passed to the constructor.
+
+// Only change code below this line
+
+// Only change code above this line
+
+const carrot = new Vegetable('carrot');
+console.log(carrot.name); // Should display 'carrot'*/
+
+class Vegetable {
+    constructor(name){
+        this.name = name
+    }
+};
+const carrot = new Vegetable('carrot');
+console.log(carrot.name); // Should display 'carrot'
+
+class Thermostat {
+    constructor (farenheit){
+        this._farenheit = farenheit;
+    }
+    get temperature (){
+        return ((5/9 )* (this._farenheit - 32));
+    }
+    set temperature (celsius){
+     return  this._farenheit =( (celsius * 9.0) /5)+ 32;
+    }
+}
+
+const thermos = new Thermostat(76); // Setting in Fahrenheit scale
+let temp = thermos.temperature; // 24.44 in Celsius
+console.log(temp);
+thermos.temperature = 26;
+temp = thermos.temperature; // 26 in Celsius
+console.log(temp=thermos.temperature);
