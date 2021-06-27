@@ -150,6 +150,7 @@ let canery = {
     color: "Red",
     numLegs: 2
 };
+
 console.log(canery instanceof Bird2);
 /*This instanceof method would return false.
 
@@ -164,3 +165,92 @@ function House(numBedrooms){
 
 let myHouse = new House(4);
 console.log(myHouse instanceof House);
+
+/*  Understand Own Properties
+
+In the following example, the Bird constructor defines 
+two properties: name and numLegs:
+
+*/
+function Bird3(name){
+    this.name = name;
+    this.numLegs = 2;
+}
+let duck1 = new Bird3("Donald");
+let canery1 = new Bird3("Tweety");
+
+/*name and numLegs are called own properties, 
+because they are defined directly on the instance object. 
+That means that duck and canary each has its own separate 
+copy of these properties. In fact every instance of Bird will have 
+its own copy of these properties. The following code adds all 
+of the own properties of duck to the array ownProps:*/
+
+let ownProps = [];
+for (let property in duck) {
+    if (property in duck === true) {
+        ownProps.push(property)
+    }
+}
+console.log(ownProps);
+
+/*The console would display the value ["name", "numLegs"].
+
+Add the own properties of canary to the array ownProps1.*/
+
+let ownProps1 = [];
+for(let props in canery){
+   if(canery1.hasOwnProperty(props)) {
+       ownProps1.push([props])
+   }
+}
+console.log(ownProps1);
+
+let t = [
+    {
+        b: 1,
+        c: 2
+    },
+    {
+        e:3,
+        f: 4
+    }
+];
+let p = [];
+for (let c in t){
+    if (t.hasOwnProperty(c)) {
+        p.push(t[c]);
+    }
+}
+console.log(p);
+
+//returns whole arrey  [{…}, {…}]
+
+/*Use Prototype Properties to Reduce Duplicate Code
+
+Since numLegs will probably have the same value for all instances of Bird, 
+you essentially have a duplicated variable numLegs inside each Bird instance.
+
+This may not be an issue when there are only two instances, but imagine if there 
+are millions of instances. That would be a lot of duplicated variables.
+
+A better way is to use the prototype of Bird. Properties in the prototype are shared 
+among ALL instances of Bird. Here's how to add numLegs to the Bird prototype:
+
+*/
+
+Bird.prototype.numLegs = 2;
+
+console.log(duck.numLegs);
+console.log(canery);
+
+
+/*Now all instances of Bird have the numLegs property.
+
+Since all instances automatically have the properties on the prototype, t
+hink of a prototype as a "recipe" for creating objects. Note that the prototype 
+for duck and canary is part of the Bird constructor as Bird.prototype. 
+Nearly every object in JavaScript has a prototype property which is part 
+of the constructor function that created it.
+
+Add a numLegs property to the prototype of Dog*/
