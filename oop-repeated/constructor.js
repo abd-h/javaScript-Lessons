@@ -1,4 +1,5 @@
-/*Define a Constructor Function
+/*      Define a Constructor Function
+
 Constructors are functions that create new objects. 
 They define properties and behaviors that will belong to the new object. 
 Think of them as a blueprint for the creation of new objects.
@@ -193,6 +194,7 @@ for (let property in duck) {
     }
 }
 console.log(ownProps);
+console.log(duck);
 
 /*The console would display the value ["name", "numLegs"].
 
@@ -238,19 +240,132 @@ A better way is to use the prototype of Bird. Properties in the prototype are sh
 among ALL instances of Bird. Here's how to add numLegs to the Bird prototype:
 
 */
+function BlueBird(name) {
+    this.name = name;
+}
+BlueBird.prototype.numPeaks = 21;
 
-Bird.prototype.numLegs = 2;
+let exoticBird = new BlueBird("Parotino");
+console.log(exoticBird.numPeaks);
+BlueBird.prototype.numPeaks = 11;
+let nonExoticBird = new BlueBird("NotParotino");
+console.log(nonExoticBird.numPeaks);// returns 11
 
-console.log(duck.numLegs);
-console.log(canery);
 
 
 /*Now all instances of Bird have the numLegs property.
 
-Since all instances automatically have the properties on the prototype, t
-hink of a prototype as a "recipe" for creating objects. Note that the prototype 
+Since all instances automatically have the properties on the prototype, 
+think of a prototype as a "recipe" for creating objects. Note that the prototype 
 for duck and canary is part of the Bird constructor as Bird.prototype. 
 Nearly every object in JavaScript has a prototype property which is part 
 of the constructor function that created it.
 
 Add a numLegs property to the prototype of Dog*/
+function Dog1(name) {
+    this.name = name;
+}
+Dog1.prototype.numLegs = 4;
+let beagle = new Dog1("Snoopy");
+console.log(beagle);
+
+console.log(beagle.numLegs);
+
+/*   Iterate Over All Properties
+You have now seen two kinds of properties: own properties and prototype properties. 
+Own properties are defined directly on the object instance itself. 
+And prototype properties are defined on the prototype.*/
+
+function Insect(name) {
+    this.name = name;// own property
+}
+Insect.prototype.numLegs = 46; // prototype property
+
+let recycler = new Insect("Centerpede");
+console.log(recycler.numLegs);
+
+/*Here is how you add recycler's own properties to the array ownProps 
+and prototype properties to the array prototypeProps:*/
+
+let ownProps2 = [];
+let prototypeProps = [];
+
+for (let property in recycler) {
+    if (recycler.hasOwnProperty(property)) {
+        ownProps2.push(property);
+    }
+    else {
+        prototypeProps.push(property);
+    }
+}
+console.log(ownProps2);//would display ["name"] in the console, and
+console.log(prototypeProps);//would display ["numLegs"].
+
+/*Add all of the own properties of beagle to the array ownProps. 
+Add all of the prototype properties of Dog to the array prototypeProps.*/
+
+function DogNum4(name){
+    this.name = name;
+}
+DogNum4.prototype.numLegs = 4;
+
+let beagleNum2 = new DogNum4("Terrier");
+
+let ownProps3 = [];
+let prototypeProps2 = [];
+
+for (let property in beagleNum2) {
+    if(beagleNum2.hasOwnProperty(property)) {
+        ownProps3.push(property);
+    }
+    else {
+        prototypeProps2.push(property);
+    }
+}
+console.log(ownProps3);
+console.log(prototypeProps2);
+
+/*      Understand the Constructor Property
+There is a special constructor property located on the object 
+instances duck and beagle that were created in the previous challenges:*/
+
+console.log(duck1.constructor === Bird3);
+console.log(beagle.constructor === Dog1);
+
+/*Both of these console.log calls would display true in the console.
+
+Note that the constructor property is a reference to the constructor 
+function that created the instance. 
+
+The advantage of the constructor property is that it's possible to check
+ for this property to find out what kind of object it is. Here's an example 
+ of how this could be used:*/
+
+ function joinBirdFratenity(candidate){
+     if(candidate.constructor === Bird3){
+         return true;
+     }
+     else {
+         return false
+    }
+ }
+ console.log(joinBirdFratenity(duck1));
+
+ /*Note: Since the constructor property can be overwritten 
+ (which will be covered in the next two challenges) it’s generally 
+ better to use the instanceof method to check the type of an object.
+
+Write a joinDogFraternity function that takes a candidate parameter 
+and, using the constructor property, return true if the candidate is a Dog1, 
+otherwise return false.
+*/
+
+function joinDogFraternity(candidate) {
+    if(candidate.constructor === Dog1){
+        return true;
+    }
+    else {
+        return true;
+    }
+}
+console.log(joinDogFraternity(dog1));
