@@ -103,3 +103,5 @@ You can show this relationship with the isPrototypeOf method:
 */
 
 console.log(BirdII.prototype.isPrototypeOf(duckII));
+// This would return true;
+
