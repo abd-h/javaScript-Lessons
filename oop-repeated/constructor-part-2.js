@@ -275,6 +275,7 @@ by Bird and not Animal. To do so, you can manually set the constructor
 property of Bird to the Bird object:
 
 */
+//..........................................................................................................
 Lion.prototype.constructor = Lion;
 console.log(cub.describe());
 
@@ -296,4 +297,7 @@ Tiger.prototype.constructor = Tiger;
 
 let laperd = new Lepord();
 let tiger = new Tiger();
+
+//.............................................................................................................
+
 
