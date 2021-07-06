@@ -322,34 +322,31 @@ before the bookName parameter.
 */
 
 // The global variable
-var bookList = ["The Hound of the Baskervilles", 
-"On The Electrodynamics of Moving Bodies", 
-"Philosophiæ Naturalis Principia Mathematica", 
-"Disquisitiones Arithmeticae"];
+var bookList = ["The Hound of the Baskervilles", "On The Electrodynamics of Moving Bodies", "Philosophiæ Naturalis Principia Mathematica", "Disquisitiones Arithmeticae"];
 
 // Change code below this line
-function add (bookName) {
+function add (arr, bookName) {
 
-  let a = bookList.slice()
-  return a.push(bookName);
+  let a = arr.slice()
+  a.push(bookName);
+  return a;
   
   // Change code above this line
 }
 
 // Change code below this line
-function remove (bookName) {
-  var book_index = bookList.indexOf(bookName);
-  if (book_index >= 0) {
-
-   let r =  bookList.slice(book_index, 1);
-    return ;
+function remove (arr, bookName) {
+  var book_index = arr.slice();
+  if (book_index.indexOf(bookName) >= 0) {
+    book_index.splice(book_index.indexOf(bookName), 1);
+    return book_index;
 
     // Change code above this line
     }
 }
 
-var newBookList = add(bookList, 'A Brief History of Time');
-var newerBookList = remove(bookList, 'On The Electrodynamics of Moving Bodies');
-var newestBookList = remove(add(bookList, 'A Brief History of Time'), 'On The Electrodynamics of Moving Bodies');
+let newBookList = add(bookList, 'A Brief History of Time');
+let newerBookList = remove(bookList, 'On The Electrodynamics of Moving Bodies');
+let newestBookList = remove(add(bookList, 'A Brief History of Time'), 'On The Electrodynamics of Moving Bodies');
 
 console.log(bookList);
