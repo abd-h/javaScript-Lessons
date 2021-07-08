@@ -209,9 +209,9 @@
     let s1 = [23, 65, 98, 5];
  Array.prototype.myMap = function(callback){
     let newArray = [];
-    s1.forEach((item) => (newArray.push(item * 2)));
+    this.forEach((item) => (newArray.push(callback(item))));
     return newArray;
-}
+};
 console.log(Array.prototype.myMap());
 
 

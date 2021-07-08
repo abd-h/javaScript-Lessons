@@ -230,14 +230,105 @@ var new_s = s.myMap(function(item) {
 
 // The global variable
 let s = [23, 65, 98, 5];
-Array.prototype.myMap = (() => {
+Array.prototype.myMap = function(callback){
     let newArray = [];
-    s.forEach((a) => newArray.push(a * 2));
+    this.forEach(a => newArray.push(callback(a)));
     return newArray;
-})
-console.log(s.myMap());
+};
+
 let new_s = s.myMap (function(item){
     return item * 2;
 })
 
 console.log(new_s);
+
+/*          Introduction
+
+From the classic forloop to the forEach() method, various techniques and 
+methods are used to iterate through datasets in JavaScript. 
+
+One of the most popular methods is the .map() method. .map() creates an array 
+from calling a specific function on each item in the parent array. .map() is a non-mutating 
+method that creates a new array as opposed to mutating methods, which only make changes 
+to the calling array.
+
+This method can have many uses when working with arrays. In this tutorial, you’ll look at 
+four noteworthy uses of .map() in JavaScript: calling a function of array elements, converting 
+strings to arrays, rendering lists in JavaScript libraries, and reformatting array objects.
+
+Step 1 — Calling a Function on Each Item in an Array
+.map() accepts a callback function as one of its arguments, and an important parameter of that 
+function is the current value of the item being processed by the function. This is a required parameter. 
+With this parameter, you can modify each item in an array and create a new function.
+
+Here’s an example:
+
+*/
+const sweetArray = [2,3,4,5,35];
+console.log(sweetArray);
+const sweeterArray = sweetArray.map(a => a * 2);
+console.log(sweeterArray);
+// return [4, 6, 8, 10, 70];
+
+//This can be simplified further to make it cleaner with;
+
+// Create a function to use
+const makeSweeter = (sweetItem => sweetItem * 2);
+
+//We have an Array
+const sArray = [2,3,4,5,35];
+console.log(sArray);
+
+// call the function we made more readeble
+const sW = sArray.map(makeSweeter );
+console.log(sW);// // return [4, 6, 8, 10, 70];
+
+/*
+Step 2 — Converting a String to an Array
+
+.map() is known to belong to the array prototype. In this step you will use it 
+to convert a string to an array. You are not developing the method to work for strings here. 
+Rather, you will use the special .call() method.
+
+Everything in JavaScript is an object, and methods are functions attached to these objects. 
+.call() allows you to use the context of one object on another. Therefore, you would be copying 
+the context of .map() in an array over to a string.
+
+.call() can be passed arguments of the context to be used and parameters for the arguments of the original function.
+
+Here’s an example:
+
+*/
+
+const name = "Sammy";
+const map = Array.prototype.map;
+
+const newName = map.call(name, eachLetter => {
+    console.log(name);
+    return `${eachLetter}a`;
+});
+
+console.log(newName);
+/*This output is logged to the console:
+
+Output
+[ "Sa", "aa", "ma", "ma", "ya" ]*/
+
+/*
+    Here, you used the context of .map() on a string and passed an argument 
+    of the function that .map() expects.
+
+This functions like the .split() method of a string, only that each individual string 
+characters can be modified before being returned in an array.
+
+Step 3 — Rendering Lists in JavaScript Libraries
+JavaScript libraries like React use .map() to render items in a list. This requires JSX syntax, 
+however, as the .map() method is wrapped in JSX syntax.
+
+Here’s an example of a React component:
+
+*/
+// import React from "react";
+// import { ReactDOM } from "react-dom";
+
+const namesses = ["Whale", "Squid", "Turtle", "Coral Star",  "fish"];
