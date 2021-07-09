@@ -321,14 +321,73 @@ Output
 This functions like the .split() method of a string, only that each individual string 
 characters can be modified before being returned in an array.
 
-Step 3 — Rendering Lists in JavaScript Libraries
-JavaScript libraries like React use .map() to render items in a list. This requires JSX syntax, 
-however, as the .map() method is wrapped in JSX syntax.
+*/
 
-Here’s an example of a React component:
+/*Sometimes, you need to take an array, transform its elements, and include the 
+results in a new array.
+
+Typically, you use a for loop to iterate over the elements, transform each individual one, 
+and push the results into a new array.
+
+Let’s take a look at an example.
+
+Suppose that you have an array of numbers where each element represents 
+the radius of a circle as follows:*/ 
+
+let circles = [10,30,50];
+/*The following illustrates how to calculate the area of each circle and push 
+the result into a new array.*/
+
+let areas = []; // to store areas of circles
+let area = 0;
+
+// using for loop 
+for (let i = 0; i < circles.length; i++) {
+    area = Math.floor(Math.PI * circles[i] * circles[i]);
+    areas.push(area);
+}
+console.log(areas);
+/*[314, 2827, 7853]
+
+It takes a quite amount of code to accomplish this.
+
+Starting from ES5, JavaScript Array type provides the map() method that 
+allows you to transform the array elements in a cleaner way.
 
 */
-// import React from "react";
-// import { ReactDOM } from "react-dom";
 
-const namesses = ["Whale", "Squid", "Turtle", "Coral Star",  "fish"];
+function circleArea(radius) {
+    return Math.floor(Math.PI * radius * radius);
+}
+//using function
+let mapArea = circles.map(circleArea);
+
+/*How it works.
+
+First, define a function that calculates the area of a circle.
+Then, pass the circleArea function to the map() method. 
+The map() method will call the circleArea function on each 
+element of the circles array and return a new array with the 
+elements that have been transformed.
+
+To make it shorter, you can pass in the map() method an 
+anonymous function as follows.*/
+
+let mapArea1 = circles.map(
+    ((radius) => Math.floor(Math.PI *radius * radius))
+)
+console.log(mapArea1);
+
+/*Also, you can make use of the arrow function in ES6 to achieve 
+the same result with a cleaner code:*/
+let mapAreas = circles.map((c) => Math.floor(Math.PI *c *c));
+console.log(mapAreas);
+
+
+/*JavaScript Array map() method in detail
+The following illustrates the map() method.*/
+let arrayObject = ["Jan", "Feb", "March", "April", "May", "Jun", "July"]
+let calender = arrayObject.map((currentElement, index, array) => 
+                                                    `${index+ " "+ currentElement}`);
+console.log(calender);                                                    
+
