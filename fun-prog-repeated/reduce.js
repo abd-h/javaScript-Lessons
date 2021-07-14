@@ -1,42 +1,64 @@
-/*
-Use the filter Method to Extract Data from an Array
+/**
+    Use the reduce Method to Analyze Data
+Array.prototype.reduce(), or simply reduce(), is the most general 
+of all array operations in JavaScript. 
 
-Another useful array function is Array.prototype.filter(), or simply filter().
+You can solve almost any array processing problem using the reduce 
+method.
 
-filter calls a function on each element of an array and returns a new array 
-containing only the elements for which that function returns true. In other words, 
-it filters the array, based on the function passed to it. Like map, it does this without 
-needing to modify the original array.
+The reduce method allows for more general forms of array processing, 
+and it's possible to show that both filter and map can be derived as special 
+applications of reduce. The reduce method iterates over each item in an array 
+and returns a single value (i.e. string, number, object, array). 
 
-The callback function accepts three arguments. The first argument is the current element 
-being processed. The second is the index of that element and the third is the array upon 
-which the filter method was called.
+This is achieved via a callback function that is called on each iteration.
 
-See below for an example using the filter method on the users array to return a new array 
-containing only the users under the age of 30. For simplicity, the example only uses the first 
-argument of the callback.
-*/
+    # The callback function accepts four arguments. 
 
-const users = [
-    {name: "John Doe", age: 34},
-    {name: "Amy", age: 24},
-    {name: "CamperCat", age: 20}
+1.  The first argument is known as the accumulator, which gets assigned the return 
+    value of the callback function from the previous iteration.
+
+2.  The second is the current element being processed, the third is the index of that 
+     element.
+     
+3.  The fourth is the array upon which reduce is called.
+
+4.  In addition to the callback function, reduce has an additional parameter which takes 
+    an initial value for the accumulator. If this second parameter is not used, then the first 
+    iteration is skipped and the second iteration gets passed the first element of the array    
+    as the accumulator.
+
+See below for an example using reduce on the users array to return the sum of all the 
+users' ages. For simplicity, the example only uses the first and second arguments.
+
+ */
+
+const siteUsers = [
+    {name: "Gary Liniker", age: 55},
+    {name: "Alan Shearer", age: 52},
+    {name: "Saka Mahmoud", age: 18},
+    {name: "Marcus Rushford", age: 23},
+    {name: "Sancho", age: 23}
 ];
 
-const userUnder30 = users.filter((user) => user.age < 30);
-console.log(userUnder30);
-/*The console would display the value [ { name: 'Amy', age: 20 }, 
-{ name: 'camperCat', age: 10 } ].
+const totalAge = siteUsers.reduce((total, user) => total + user.age, 0);
+console.log(totalAge);//The console would display the value 64.
+
+/**
+    In another example, see how an object can be returned containing the names of the users 
+    as properties with their ages as values.
+ */
+
+const footballers = siteUsers.reduce((total, user) =>{
+    total[user.name] = user.age;
+    return total;
+}, {});
+console.log(footballers);    
+// The console log will display
+// {Gary Liniker: 55, Alan Shearer: 52, Saka Mahmoud: 18, Marcus Rushford: 23, Sancho: 23}
 
 
-The variable watchList holds an array of objects with information on several movies. 
-Use a combination of filter and map on watchList to assign a new array of objects with 
-only title and rating keys. The new array should only include objects where imdbRating 
-is greater than or equal to 8.0. Note that the rating values are saved as strings in the 
-object and you may need to convert them into numbers to perform mathematical 
-operations on them.
-
-*/
+            //      Challenge
 
 // The global variable
 var watchList = [
@@ -151,36 +173,28 @@ var watchList = [
     "Response": "True"
   }
 ];
+     
+/**
+ The variable watchList holds an array of objects with information on several movies. 
+ Use reduce to find the average IMDB rating of the movies directed by Christopher Nolan. 
+ Recall from prior challenges how to filter data and map over it to pull what you need. 
+ You may need to create other variables, and return the average rating from getRating function. 
+ Note that the rating values are saved as strings in the object and need to be converted into 
+ numbers before they are used in any mathematical operations.
+ */
 
 
-let filteredList = watchList.filter((a) => a.imdbRating > Number("8.0" ))
-                                           .map((a) => ({title: a.Title, rating: a.imdbRating})); 
-
-console.log(filteredList);
-
-/*      Implement the filter Method on a Prototype
-
-You might learn a lot about the filter method if you implement your own version of it. 
-It is recommended you use a for loop or Array.prototype.forEach().
-
-Write your own Array.prototype.myFilter(), which should behave exactly like 
-Array.prototype.filter(). You should not use the built-in filter method. 
-The Array instance can be accessed in the myFilter method using this.
-
-*/
-
-// The global variable
-var s = [23, 65, 98, 5];
-
-Array.prototype.myFilter = function(callback) {
+function getRating(watchList){
   // Only change code below this line
-  var newArray = [];
-  this.forEach((item) => (callback(item))? newArray.push(item): true);//boom
-  // Only change code above this line
-  return newArray
-};
+  let nolanMovies =watchList.filter((director) => director["Director"] === "Christopher Nolan")
+  let count = nolanMovies.length;
+  let number = nolanMovies.map((a) => parseFloat(a.imdbRating));
+  let sumRating = number.reduce((a,b) => a + b.imdbRating,0)
+  let averageRating = sumRating / count;
 
-var new_s = s.myFilter(function(item) {
-  return item % 2 === 1;
-});
-console.log(new_s);
+
+  // Only change code above this line
+  return averageRating;
+}
+console.log(getRating(watchList));
+       
