@@ -58,7 +58,7 @@ console.log(footballers);
 // {Gary Liniker: 55, Alan Shearer: 52, Saka Mahmoud: 18, Marcus Rushford: 23, Sancho: 23}
 
 
-            //      Challenge
+            //      Challenge 1
 
 // The global variable
 var watchList = [
@@ -188,13 +188,53 @@ function getRating(watchList){
   // Only change code below this line
   let nolanMovies =watchList.filter((director) => director["Director"] === "Christopher Nolan")
   let count = nolanMovies.length;
-  let number = nolanMovies.map((a) => parseFloat(a.imdbRating));
-  let sumRating = number.reduce((a,b) => a + b.imdbRating,0)
+  let number = nolanMovies.map((a) => Number(a.imdbRating));
+  let sumRating = number.reduce((a,b) => (a + b),0)
   let averageRating = sumRating / count;
 
 
   // Only change code above this line
   return averageRating;
 }
-console.log(getRating(watchList));
+console.log(getRating(watchList)); 
+//  console.log returns 8.675 whichs the correct answer.
+
+/** 
+ * Challenge 2
+ 
+Use Higher-Order Functions map, filter, or reduce to Solve a Complex ProblemPassed
+Now that you have worked through a few challenges using higher-order functions like 
+map(), filter(), and reduce(), you now get to apply them to solve a more complex challenge.
+
+1.  Complete the code for the squareList function using any combination of map(), filter(), 
+    and reduce(). 
+
+2.  The function should return a new array containing the squares of only the positive integers 
+    (decimal numbers are not integers) when an array of real numbers is passed to it. An example 
+    of an array of real numbers is [-3, 4.8, 5, 3, -3.2].
+
+Note: Your function should not use any kind of for or while loops or the forEach() function.
+
+const squareList = arr => {
+  // Only change code below this line
+  return arr;
+  // Only change code above this line
+};
+
+const squaredIntegers = squareList([-3, 4.8, 5, 3, -3.2]);
+console.log(squaredIntegers);
+ */
+
+const squareList = (arr) => {
+    let realNums = arr
+        .filter((num) => (num > 0 && num === parseInt(num)))
+        .map(num => Math.pow(num, 2));
+        // .reduce((sum, num) => sum = Math.floor(Math.pow(num,2)), 1);
+    return realNums;
+};
+
+const squaredList = squareList([4, 5.6, -9.8, 3.14, 42, 6, 8.34, -2]);
+console.log(squaredList);
+
+/*********************          The End         ***************************/
        
