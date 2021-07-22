@@ -1,0 +1,36 @@
+NOTES THE TERMINAL:
+
+echo $0  confirms what shell you currently using.
+
+pwd -: Print Working Directory: prints current location.
+
+ls lists whatever in your current directory.  
+
+ls -al prints all files including hidden one.
+
+		****** directories ******
+
+mkdir: Make Directory (creates directories);
+
+rmdir: removes Directories;
+
+		****** files ******
+
+touch: creates files
+
+rm: removes files
+
+cp: copies named file content into another new file. Essentially a duplicate.
+    Example:
+		cp file.md file2-copy.md	(file2-copy.md is the duplicate file);
+
+mv  renaming files(mv file2-copy file3)
+
+cat
+
+vi i for inserting 
+   :esc  wq for quit and save
+   : esc q  for quitting without saving;
+   		
+
+ 
