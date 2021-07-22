@@ -26,11 +26,16 @@ cp: copies named file content into another new file. Essentially a duplicate.
 
 mv  renaming files(mv file2-copy file3)
 
-cat
 
 vi i for inserting 
    :esc  :wq for quit and save
    : esc :q  for quitting without saving;
+
+Cat is for printing content of file;
+
+
+
+
    		
 
  
