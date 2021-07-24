@@ -280,3 +280,58 @@ function booWho(bool) {
   // return bool === true || bool === false
 }
 console.log(booWho(false));
+
+/*
+Challenge 9
+
+Title Case a Sentence
+Return the provided string with the first letter of each word capitalized. 
+Make sure the rest of the word is in lower case.
+
+For the purpose of this exercise, you should also capitalize connecting 
+words like the and of.
+
+function titleCase(str) {
+  return str;
+}
+
+titleCase("I'm a little tea pot");
+
+*/
+
+function titleCase(str){
+  return str
+                .toLowerCase()
+                .split(" ")
+                .map((x) => x[0].toUpperCase().concat(x.slice(1,)))
+                .join(" ")
+                
+
+}
+console.log(titleCase("I'm a little tea pot, how about you"));
+
+
+/*
+Challenge 10
+
+Slice and SplicePassed
+You are given two arrays and an index.
+
+Copy each element of the first array into the second array, in order.
+
+Begin inserting elements at index n of the second array.
+
+Return the resulting array. The input arrays should remain the same after the function runs.
+
+function frankenSplice(arr1, arr2, n) {
+  return arr2;
+}
+
+frankenSplice([1, 2, 3], [4, 5, 6], 1);*/
+
+function frankenSplice(arr1, arr2, n){
+let x = arr2.slice();
+x.splice(n,0,...arr1);
+return x
+}
+console.log(frankenSplice([1, 2, 3], [4, 5, 6], 1));
