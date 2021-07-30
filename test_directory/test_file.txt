@@ -33,7 +33,10 @@ vi i for inserting
 
 Cat is for printing content of file;
 
+code .  opens Vs Code: Here you could configure bash.profile file  
 
+
+^c control + c to quit operations
 
 
    		
