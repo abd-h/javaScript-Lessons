@@ -1,3 +1,135 @@
+/*
+*******   Contents    *******
+1.  Sum All Numbers in a Range
+2. Diff Two Arrays
+3. Seek and Destroy
+
+Sum All Numbers in a Range
+
+We'll pass you an array of two numbers. Return the sum of those two numbers 
+plus the sum of all the numbers between them. The lowest number will not always 
+come first.
+
+For example, sumAll([4,1]) should return 10 because sum of all the numbers 
+between 1 and 4 (both inclusive) is 10. 
+
+function sumAll(arr) {
+  return 1;
+}
+
+sumAll([1, 4]);
+
+***         Test            ***        
+
+sumAll([1, 4]) should return a number.
+
+sumAll([1, 4]) should return 10.
+
+sumAll([4, 1]) should return 10.
+
+sumAll([5, 10]) should return 45.
+
+sumAll([10, 5]) should return 45.
+
+function sumAll(arr) {
+  return 1;
+}
+
+sumAll([1, 4]);*/
+
+/*
+ 1. Since we have to figure out the numbers in between the two given to us in arr, 
+    I would start by running sort() on arr, so arr[0] would be the smallest number.
+
+2. I will also declare a new empty array to add all the numbers in between into.
+
+3. In order to get all the numbers in between, I will create a for loop, and push 
+    each value into our fullArr.
+    If we sort() as above then run our for loop, fullArr on sumAll([1,4]) should be [1, 2, 3, 4].    
+
+4. We now have all the numbers we need in an array. We just have to figure out how to add them all up.
+    Enter another new-er array method, reduce().    
+*/
+function sumAll(arr) {
+  arr = [...arr];
+    let fullArr = [];
+    arr.sort((a, b) => (a -b));
+    for(let i = arr[0]; i <= arr[1]; i++){
+        fullArr.push(i);
+    }
+   return fullArr.reduce((a,b) => (a + b),0);
+}    
+console.log(sumAll([4,1])); // returns 10
+
+/* Take 2*/
+
+function sumsInRange(arr){
+  let min = Math.min(arr[0], arr[1]);
+  let max = Math.max(arr[0],arr[1]);
+  let fullArr = 0;
+  for(let i = min; i <= max; i++) {
+    fullArr += i;
+  }
+  return fullArr;
+}
+console.log(sumsInRange([1,4]));// returns 10
+
+// Take 3
+
+function sumOfRanges(arr) {
+  const startNum = arr[0];
+  const endNum = arr[1];
+  const numCount = Math.abs(startNum - endNum) + 1;
+  const sum = ((startNum + endNum) * numCount) / 2;
+  return sum;
+}
+console.log(sumOfRanges([5,10]));
+
+
+/* 
+Challenge 2 
+
+Diff Two Arrays
+Compare two arrays and return a new array with any items only found in 
+one of the two given arrays, but not both. In other words, return the symmetric 
+difference of the two arrays.
+
+Note: You can return the array with its elements in any order.
+
+function diffArray(arr1, arr2) {
+  var newArr = [];
+  return newArr;
+  
+}
+
+diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]);*/
+
+function diffArray(arr1, arr2){
+  let newArray = arr1.concat(arr2);
+  return newArray.filter((a) => !arr1.includes(a) || !arr2.includes(a));
+}
+
+console.log(diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]));
+
+
+function newdiff(arr1, arr2){
+    return [...diff(arr1, arr2), ...diff(arr2, arr1)];
+
+    function diff(a, b) {
+        return a.filter((item) => b.indexOf(item) === -1);
+    }
+}
+console.log(newdiff([1, 2, 3, 5], [1, 2, 3, 4, 5]));
+
+function diffArrays(arr1, arr2){
+  let newArr = arr1.concat(arr2);
+  let x = ((a) => !arr1.includes(a) || !arr2.includes(a));
+  return newArr.filter(x);
+}
+
+console.log(diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]));
+
+
 
 /*
 Challenge 3 
@@ -90,6 +222,8 @@ console.log(destroyer([1, 2, 3, 5, 1, 2, 3], 2, 3));
 
 
 /*
+4. Challenge 4
+
  Wherefore art thou
  Make a function that looks through an array of objects (first argument) and returns an array of all objects 
  that have matching name and value pairs (second argument). Each name and value pair of the source object has 
