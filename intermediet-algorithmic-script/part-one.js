@@ -224,7 +224,7 @@ console.log(destroyer([1, 2, 3, 5, 1, 2, 3], 2, 3));
 /*
 4. Challenge 4
 
- Wherefore art thou
+ ***    Wherefore art thou    ***
  Make a function that looks through an array of objects (first argument) and returns an array of all objects 
  that have matching name and value pairs (second argument). Each name and value pair of the source object has 
  to be present in the object from the collection if it is to be included in the returned array.
@@ -244,8 +244,74 @@ passed on as the second argument.
 }
 
 whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", 
-last: "Capulet" }], { last: "Capulet" });*/
+last: "Capulet" }], { last: "Capulet" });
 
+***   Test    **
+
+whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", 
+last: "Capulet" }], { last: "Capulet" }) should return [{ first: "Tybalt", last: "Capulet" }].
+
+whatIsInAName([{ "apple": 1 }, { "apple": 1 }, { "apple": 1, "bat": 2 }], { "apple": 1 }) should return [{ 
+  "apple": 1 }, { "apple": 1 }, { "apple": 1, "bat": 2 }].
+
+whatIsInAName([{ "apple": 1, "bat": 2 }, { "bat": 2 }, { "apple": 1, "bat": 2, "cookie": 2 }], { "apple": 1, 
+"bat": 2 }) should return [{ "apple": 1, "bat": 2 }, { "apple": 1, "bat": 2, "cookie": 2 }].
+
+whatIsInAName([{ "apple": 1, "bat": 2 }, { "apple": 1 }, { "apple": 1, "bat": 2, "cookie": 2 }], { "apple": 1, 
+"cookie": 2 }) should return [{ "apple": 1, "bat": 2, "cookie": 2 }].
+
+whatIsInAName([{ "apple": 1, "bat": 2 }, { "apple": 1 }, { "apple": 1, "bat": 2, "cookie": 2 }, { "bat":2 }], 
+{ "apple": 1, "bat": 2 }) should return [{ "apple": 1, "bat": 2 }, { "apple": 1, "bat": 2, "cookie":2 }].
+
+whatIsInAName([{"a": 1, "b": 2, "c": 3}], {"a": 1, "b": 9999, "c": 3}) should return []*/
+
+
+//Stater Code
 function whatIsInAName(collection, source){
-  
+  let arr = [];
+  let sourceKey = Object.keys(source);
+  arr = collection.filter((obj) => {
+    for (let i = 0; i  < sourceKey.length; i++){
+      if(!obj.hasOwnProperty(sourceKey[i]) || obj[sourceKey[i]] !== source[sourceKey[i]]){
+        return false;
+      }
+    }
+    return true;
+  })
+  return arr;
 }
+console.log(whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", 
+last: "Capulet" }], { last: "Capulet" }));
+
+/*
+4. Challenge
+
+Spinal Tap Case
+Convert a string to spinal case. Spinal case is all-lowercase-words-joined-by-dashes.
+
+spinalCase("This Is Spinal Tap") should return the string this-is-spinal-tap.
+
+spinalCase("thisIsSpinalTap") should return the string this-is-spinal-tap.
+
+spinalCase("The_Andy_Griffith_Show") should return the string the-andy-griffith-show.
+
+spinalCase("Teletubbies say Eh-oh") should return the string teletubbies-say-eh-oh.
+
+spinalCase("AllThe-small Things") should return the string all-the-small-things
+
+function spinalCase(str) {
+  return str;
+}
+
+spinalCase('This Is Spinal Tap');*/
+
+function spinalCase(str){
+  let x = str 
+                  .toLowerCase()
+                  .split()
+                  .replace(/\s/)
+                  .join()
+                  
+  return x;
+}
+console.log(spinalCase('This Is Spinal Tap'));
