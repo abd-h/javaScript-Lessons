@@ -3,6 +3,9 @@
 1.  Sum All Numbers in a Range
 2. Diff Two Arrays
 3. Seek and Destroy
+4. Wherefore art thou 
+5. Spinal Tap Case
+
 
 Sum All Numbers in a Range
 
@@ -306,12 +309,17 @@ function spinalCase(str) {
 spinalCase('This Is Spinal Tap');*/
 
 function spinalCase(str){
-  let x = str 
-                  .toLowerCase()
-                  .split()
-                  .replace(/\s/)
-                  .join()
+  return str 
                   
-  return x;
+                  .replace(/([a-z])([A-Z])/g, "$1 $2")
+                  .replace(/\s+|_+|-+/g, "-")
+                  .toLowerCase();
+                  
+
 }
 console.log(spinalCase('This Is Spinal Tap'));
+console.log(spinalCase("The_Andy_Griffith_Show"));
+console.log(spinalCase("Teletubbies say Eh-oh"));
+console.log(spinalCase("AllThe-small Things"));
+console.log(spinalCase("thisIsSpinalTap"));
+
