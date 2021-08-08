@@ -144,6 +144,7 @@ console.log(s.concat(f));
  let results = s.concat(f).join(" ");
  console.log(results);
 
+ //incomplete capitalization matter on this challenge
 function myReplace(str, before, after) {
     let copyStr = str.split(" ").slice();
     let find = copyStr.indexOf(before);
