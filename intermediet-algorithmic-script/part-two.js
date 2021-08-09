@@ -127,34 +127,52 @@ function myReplace(str, before, after) {
 
 myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped");*/
 
-let jarr = "jumped";//before
-let r = "A quick brown fox jumped over the lazy dog"; // str
-let j = "jump"//after
-let s = r.split(" ").slice();//  first variable used to copy str
 
 
-console.log(s);
-let regex1 = s.indexOf(jarr); // used to find index of before
-let f = s.splice(regex1);
-console.log(f);
-let nf = f.shift();
-f.unshift(j)
-console.log(f);
-console.log(s.concat(f));
- let results = s.concat(f).join(" ");
- console.log(results);
+ //Challenge Complete  ***
+ //capitalization matter on this challenge
 
- //incomplete capitalization matter on this challenge
-function myReplace(str, before, after) {
-    let copyStr = str.split(" ").slice();
-    let find = copyStr.indexOf(before);
-    let firstCut = copyStr.splice(find); 
-    firstCut.shift();
-    firstCut.unshift(after);
-    return copyStr.concat(firstCut).join(" ");
+ function isItTrue(str, before, after){
+    let string = str.split(" ").slice();
+    console.log(string);
+    let findStr = string.indexOf(before);
+    let lowercase = string[findStr].toLowerCase();
+    let uppercase = string[findStr][0].toUpperCase();
+    uppercase += string[findStr][1]
+    console.log(lowercase);
+    console.log(uppercase);
+    console.log(string[findStr]);
+    if(string.indexOf(before) === string.indexOf(lowercase)){
+        let b = after.toLowerCase()
+                        .replace(/\w/, firstWord => firstWord.toLowerCase());
+                        console.log(b);
+       let s = string.slice();
+        let a = s.splice(findStr);
+        a.shift();
+        a.unshift(b)
+       return  s.concat(a).join(" ")
+    }
+    else if(string.indexOf(before) === string.indexOf(uppercase)){
+        let b = after.toLowerCase()
+                        .replace(/\w/, firstWord => firstWord.toUpperCase());
+                        console.log(b);
+       let s = string.slice();
+        let a = s.splice(findStr);
+        a.shift();
+        a.unshift(b)
+       return s.concat(a).join(" ")
+    }
+    else{
+        let b = after.toLowerCase()
+                        .replace(/\w/, firstWord => firstWord.toUpperCase());
+                        console.log(b);
+          let s = string.slice();
+        let a = s.splice(findStr);
+        a.shift();
+        a.unshift(b)
+       return s.concat(a).join(" ")
+    }
 }
-console.log(myReplace("I think we should look up there", "up", "Down"));
-
 
 
 
