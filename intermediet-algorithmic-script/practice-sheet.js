@@ -177,3 +177,157 @@ console.log(isItTrue("A quick brown fox jumped over the lazy dog", "jumped", "le
 // console.log(isItTrue("His name is Tom", "Tom", "john"));
 // console.log(isItTrue("His name is Tom", "Tom", "john"));
 // console.log(isItTrue("Let us get back to more Coding", "Coding", "algorithms"));
+
+
+
+/*
+DNA Pairing
+The DNA strand is missing the pairing element. Take each character, get its pair, 
+and return the results as a 2d array.
+
+Base pairs are a pair of AT and CG. Match the missing element to the provided character.
+
+Return the provided character as the first element in each array.
+
+For example, for the input GCG, return [["G", "C"], ["C","G"], ["G", "C"]]
+
+The character and its pair are paired up in an array, and all the arrays are grouped 
+into one encapsulating array.
+
+pairElement("ATCGA") should return [["A","T"],["T","A"],["C","G"],["G","C"],["A","T"]].
+
+pairElement("TTGAG") should return [["T","A"],["T","A"],["G","C"],["A","T"],["G","C"]].
+
+pairElement("CTCTA") should return [["C","G"],["T","A"],["C","G"],["T","A"],["A","T"]].
+
+function pairElement(str) {
+  return str;
+}
+
+pairElement("GCG");*/
+
+//Setup
+// function pairElement(str){
+//     let string = str.split("").slice();// ["G", "C", "G"]
+//     //PAIR OF AT AND CG
+//     let pairing1 = [["A", "T"], ["T", "A"], ["G", "C"], ["C", "G"]];
+//     let pair1 = ["G","C"];
+//     let pair2 = ["C","G"];
+//     let pair3 = ["A","T"];
+//     let pair4 = ["T","A"];
+//     console.log(pair1);
+//     console.log(pairing1[0]);
+//     let result = [];
+//     let result2 = [];
+//     let result3 = [];
+//     let result4 = [];
+//     let mainResult = [];
+  
+//     for(let i = 0; i < string.length; i++){
+//      switch (string[i]) {
+//          case "G":
+//             result.push(pair1);
+//             result.splice(2)
+//             console.log(result);
+//              break;
+//      }
+//     }
+//     for(let i = 0; i < string.length; i++){
+//      switch (string[i]) {
+//          case "C":
+//             result2.push(pair2);
+//             result2.splice(2);
+//             console.log(result2);
+//             mainResult.push(result2)
+//              break;
+//      }
+//     }
+//     for(let i = 0; i < string.length; i++){
+//      switch (string[i]) {
+//          case "A":
+//             result3.push(pair3);
+//             result3.splice(2);
+//             console.log(result3);
+//              break;
+//      }
+//     }
+//     result.pop();
+//    mainResult.unshift(result)
+//     return mainResult;
+
+// }
+// console.log(pairElement("GCG"));
+
+
+
+function pairElement(str){
+    let string = str.split("").slice();
+    let pairing1 = [["A", "T"], ["T", "A"], ["G", "C"], ["C", "G"]];
+    let result = [];
+    string.filter((a) => (a.indexOf("A") !== -1)? result.push(pairing1[0])
+                                  :(a.indexOf("T") !== -1)? result.push(pairing1[1])
+                                  :(a.indexOf("G") !== -1)? result.push(pairing1[2])
+                                  :(a.indexOf("C") !== -1)? result.push(pairing1[3])
+                                  : result);
+    return result;
+}    
+console.log(pairElement("ATCGA"));
+
+
+/*
+string.filter((a) => {
+        if(a.indexOf("A") !== -1){
+        result.push(pair3);
+    }
+    else if(a.indexOf("T") !== -1){
+        result.push(pair4);
+    }
+    else if(a.indexOf("G") !== -1){
+        
+        result.push(pair1)
+    }
+    else if(a.indexOf("C") !== -1){
+        
+    }
+    }) */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// for(let i = 0; i < pairing1.length; i++){
+//         if(pairing1[i].includes(string[2]) === true) {
+//             result.push(pairing1[i])
+//         }
+        
+//     }
+//     let t = [...result];
+//     return t;
+
+
+
+// if(pairing1[i].indexOf(string) !== -1) {
+//             result.push(pairing1[i])
+//         }
+
+
+    // pairing1[1].forEach((x) => (x.indexOf(string[1]) === "G")? true :result.push(x))
+    // pairing1[2].forEach((x) => (x.indexOf(string[2]) === "G")? true :result.push(x))
+    // pairing1[3].forEach((x) => (x.indexOf(string[0]) === "G")? true :result.push(x))
+
+
+    
