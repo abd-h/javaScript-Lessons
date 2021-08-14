@@ -35,3 +35,29 @@ function fearNotLetter(str){
     return i;
 }
 console.log(fearNotLetter("abce"));
+
+function fearNotLetter2(str){
+  let alpha = "abcdefghijklmnopqrstuvwxyz".split("");
+  let string = str.split("").slice();
+  console.log(string);
+
+  let result = [];
+  for (let i = string; i <= alpha.length; i++) {
+    if(alpha.indexOf([string]) === -1) {
+      console.log(result);
+    }
+    
+  }
+  return result;
+}
+console.log(fearNotLetter2("abce"));
+
+
+function range(start, end) {
+    let ans = [];
+    for (let i = start; i <= end; i++) {
+       ans.push(i)
+    }
+    return ans;
+}
+console.log(range(1, 6));
