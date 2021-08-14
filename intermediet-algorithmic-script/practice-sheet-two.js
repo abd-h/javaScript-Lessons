@@ -43,10 +43,9 @@ function fearNotLetter2(str){
 
   let result = [];
   for (let i = string; i <= alpha.length; i++) {
-    if(alpha.indexOf([string]) === -1) {
+    if (alpha.indexOf([string]) === -1) {
       console.log(result);
     }
-    
   }
   return result;
 }
