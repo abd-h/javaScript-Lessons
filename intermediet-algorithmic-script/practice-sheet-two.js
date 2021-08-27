@@ -39,12 +39,12 @@ console.log(fearNotLetter("abce"));
 function fearNotLetter2(str){
   let alpha = "abcdefghijklmnopqrstuvwxyz".split("");
   let string = str.split("").slice();
-  console.log(string);
+  console.log(string.indexOf(alpha));
 
   let result = [];
-  for (let i = string; i <= alpha.length; i++) {
-    if (alpha.indexOf([string]) === -1) {
-      console.log(result);
+  for (let i = 0; i < alpha.length; i++) {
+    if (string.indexOf(alpha[i]) !== -1) {
+      result.push(string.indexOf(string[i]))
     }
   }
   return result;
@@ -60,3 +60,33 @@ function range(start, end) {
     return ans;
 }
 console.log(range(1, 6));
+
+function fearNotLetter3(str){
+  let alpha = "abcdefghijklmnopqrstuvwxyz".split("");
+  console.log(alpha);
+ let string = str.split("").slice();
+ let a = alpha.slice();
+
+ console.log(string);
+  let strArr = string.length;
+  console.log(strArr);
+  let result = ""
+ console.log(string[0].indexOf());
+  for(let i = 0; i < string.length; i++) {
+    
+    if(alpha.includes(string[i])){
+      result += string[i]
+    }
+    
+  }
+  let sn = alpha.slice(result.charCodeAt(0))
+  console.log(sn);
+   console.log(result.charCodeAt(0));
+}
+console.log(fearNotLetter3("stvwx"));
+
+console.log(String.fromCharCode(65, 66,67));
+
+let ss = ['a','b'];
+console.log(ss[0].concat(ss[1]));
+console.log("s".charCodeAt(0));
