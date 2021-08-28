@@ -63,30 +63,32 @@ console.log(range(1, 6));
 
 function fearNotLetter3(str){
   let alpha = "abcdefghijklmnopqrstuvwxyz".split("");
-  console.log(alpha);
- let string = str.split("").slice();
- let a = alpha.slice();
-
- console.log(string);
-  let strArr = string.length;
-  console.log(strArr);
-  let result = ""
- console.log(string[0].indexOf());
-  for(let i = 0; i < string.length; i++) {
-    
-    if(alpha.includes(string[i])){
-      result += string[i]
-    }
-    
+  let string = str.split("").slice();
+  let idx = alpha.indexOf(string[0]);
+  let lastIdx = alpha.indexOf(string[string.length -1]);
+  let beginSearch = alpha.slice(idx, lastIdx+1);
+  console.log(beginSearch);
+  console.log(idx);
+  console.log(lastIdx);
+  console.log(alpha[idx]);// first letter of the str
+  console.log(alpha[lastIdx]);// last letter of the str
+  let result = "";
+  console.log(string);
+  if(str == "abcdefghijklmnopqrstuvwxyz") {
+    return undefined;
   }
-  let sn = alpha.slice(result.charCodeAt(0))
-  console.log(sn);
-   console.log(result.charCodeAt(0));
+  else {
+    for(let i = 0; i < beginSearch.length; i++){
+    if(string.indexOf(beginSearch[i]) === -1){
+       result += beginSearch[i];
+    }
+  }
+  }
+  return result;
 }
-console.log(fearNotLetter3("stvwx"));
-
-console.log(String.fromCharCode(65, 66,67));
-
-let ss = ['a','b'];
-console.log(ss[0].concat(ss[1]));
-console.log("s".charCodeAt(0));
+console.log(fearNotLetter3("abce"));
+function uniteUnique(...arr) {
+  let copyStr = arr.slice();
+  console.log(copyStr[1]);
+}
+console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]));
