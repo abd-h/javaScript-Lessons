@@ -1,3 +1,9 @@
+/**
+ *            Content
+ * 1. Missing Letters
+ * 2. Sorted Union
+ ...............................................................*/
+
 /*          Missing letters
 Find the missing letter in the passed letter range and return it.
 
@@ -60,7 +66,11 @@ function uniteUnique(arr) {
 
 uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);*/
 
-function uniteUnique(arr) {
-  
+function uniteUnique(...arr) {
+    let arr1 = [];
+    arr.forEach(i => i.forEach(j => arr1.push(j)));
+    return arr1.filter((element, index, arr1) => arr1.indexOf(element) == index);
 }
-console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]));
+console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]));//should return [1, 3, 2, 5, 4]
+console.log(uniteUnique([1, 2, 3], [5, 2, 1]));  // should return [1, 2, 3, 5]
+console.log(uniteUnique([1, 2, 3], [5, 2, 1, 4], [2, 1], [6, 7, 8])); //should return [1, 2, 3, 5, 4, 6, 7, 8].
