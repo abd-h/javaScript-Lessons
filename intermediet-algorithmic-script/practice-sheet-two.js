@@ -138,3 +138,110 @@ function uniteUnique(...arr){
 console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]));//should return [1, 3, 2, 5, 4]
 console.log(uniteUnique([1, 2, 3], [5, 2, 1]));  // should return [1, 2, 3, 5]
 console.log(uniteUnique([1, 2, 3], [5, 2, 1, 4], [2, 1], [6, 7, 8])); //should return [1, 2, 3, 5, 4, 6, 7, 8].
+
+/*
+Convert HTML Entities
+Convert the characters &, <, >, " (double quote), and ' (apostrophe), in a string to their corresponding HTML entities.
+
+convertHTML("Dolce & Gabbana") should return the string Dolce &amp; Gabbana.
+
+convertHTML("Hamburgers < Pizza < Tacos") should return the string Hamburgers &lt; Pizza &lt; Tacos.
+
+convertHTML("Sixty > twelve") should return the string Sixty &gt; twelve.
+
+convertHTML('Stuff in "quotation marks"') should return the string Stuff in &quot;quotation marks&quot;.
+
+convertHTML("Schindler's List") should return the string Schindler&apos;s List.
+
+convertHTML("<>") should return the string &lt;&gt;.
+
+convertHTML("abc") should return the string abc.
+
+function convertHTML(str) {
+  return str;
+}
+
+convertHTML("Dolce & Gabbana");*/
+function convertHTML(str) {
+  let strlength1 = str.slice();
+  let strlength2 = str.slice();
+  let strlength3 = str.slice();
+  let strlength4 = str.slice();
+  let strlength5 = str.slice();
+  let strlength6 = str.slice();
+  let strlength7 = str.slice();
+  let str1 = "";
+  let     str2 = "";
+  let     str3 = "";
+  let     str4 = "";
+   let    str5 = "";
+   let    str6 = "";
+   let    str7 = "";
+  // for(let i = 0; i < strlength1.length; i++){
+  //   str1 += str[i].replace("&", "&lt;")
+  //   } 
+    
+ 
+  if(str.indexOf("&")) {
+     return str1
+  }
+  //  if(str.indexOf("<")) {
+  //   return str2
+  // }
+  else if(str.indexOf("<")) {
+    return str2;
+  }
+}
+
+
+
+// console.log(convertHTML("Dolce & Gabbana"));
+console.log(convertHTML("Hamburgers < Pizza < Tacos"));
+
+function convertHTML1(str) {
+  let str1 = "";
+  let str2 = "";
+  let str3 = "";
+  let str4 = "";
+  let str5 = "";
+  let str6 = "";
+  
+  for (let i = 0; i < str.length; i++){
+   str1 += str[i].replace("<", "&lt;")
+   str2 += str[i].replace("&", "&amp;")
+   str3 += str[i].replace(">", "&gt;")
+   str4 += str[i].replace(`"`, `&quot;`)
+   str5 += str[i].replace(`'`, `&apos;`)
+   str6 = str[i].replace("<>", `"&lt:""&gt;"`)
+  }
+
+  if(str.includes("<>")){
+    return "&lt;&gt;"
+  }
+  
+  else if(str.includes("&")){
+    return str2
+  }
+  else if(str.includes(">")){
+    return str3
+  }
+  else if(str.includes(`"`)){
+    return str4
+  }
+  else if(str.includes(`'`)){
+    return str5
+  }
+  else if(str.includes("<")){
+     return str1
+  }
+  else {
+    return str;
+  }
+}
+
+console.log(convertHTML1("Dolce & Gabbana"));;
+console.log(convertHTML1("Hamburgers < Pizza < Tacos"));
+console.log(convertHTML1("Sixty > twelve"));
+console.log(convertHTML1('Stuff in "quotation marks"'));
+console.log(convertHTML1("Schindler's List"));
+console.log(convertHTML1("<>"));
