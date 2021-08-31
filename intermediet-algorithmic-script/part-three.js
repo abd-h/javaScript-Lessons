@@ -119,7 +119,6 @@ function convertHTML1(str) {
   if(str.includes("<>")){
     return "&lt;&gt;"
   }
-  
   else if(str.includes("&")){
     return str2
   }
