@@ -11,7 +11,9 @@ For example,
  sumFibs(10) should return 10 because all odd Fibonacci numbers less than or equal to 10 are 1, 1, 3, and 5.
  
  1. first get all odd nums
- 2. add these odd number
+ 2. find fib nums less than 10;
+ 3. 
+
  */
 
 function odds(n) {
