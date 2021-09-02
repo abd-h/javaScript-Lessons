@@ -24,15 +24,15 @@ function isPalindrome(str){
 console.log(isPalindrome("racecar"));
 
 // Decimal To Binary
-function findBinary(decimal, result) {
+// function findBinary(decimal, result) {
     
-    if(decimal == 0){
-        return result;
-    }
-    else {
-         result = decimal % 2 + result;
-         return findBinary(decimal / 2,result)
-    }
+//     if(decimal == 0){
+//         return result;
+//     }
+//     else {
+//          result = decimal % 2 + result;
+//          return findBinary(decimal / 2,result)
+//     }
    
-}
-console.log(findBinary(223));
+// }
+// console.log(findBinary(223));
