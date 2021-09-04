@@ -136,3 +136,54 @@ console.log(b);// odd fibonacci number
 console.log(c); // add fibonacci number
 console.log(d);// matches test case.
 //requires only putting all together in a function;
+
+// const fibonacci = (n, memoize = {}) =>{
+//     if (n in memoize) return memoize[n];
+//     if(n <= 2) return 1;
+//     memoize[n] = fibonacci(n-1, memoize) + fibonacci(n-2, memoize);
+//     let s = memoize[n];
+//     let ss = [];
+//     ss.push(s)
+//     console.log(ss);
+//     let b = [], sum;
+// for (let i = 0; i < s.length; i++){
+//     if (s[i] % 2 == 1){
+//         b.push(s[i])
+//     }
+// }
+//     return b;
+// }
+// console.log(fibonacci(6)); //1,1,2,3,5,8,13,21,34,55,89,144
+
+function fibonacci(nums){
+    let fib1 = [1, 1];
+  for (let i = 1; i < nums; i++) {
+    fib1.push((fib1[i] + fib1[i -1])  )
+  }
+//   let newArray = [];
+//   fib1.reduce((a, b, i) => {
+//       newArray[i] = a+b;
+      
+//   },0)
+  console.log(fib1);
+
+//   for(let i = 0; i < fib1.length; i++){
+//     console.log(fib1[i]);
+//   }
+//    fib1.shift();
+   let s = fib1
+   let b = [], sum;
+for (let i = 0; i < s.length; i++){
+    if (s[i] % 2 == 1){
+        b.push(s[i])
+    }
+}
+    let d = [];
+let f = b.forEach(a => {
+    if (a <= nums){
+        d.push(a)
+    }
+});
+return d.reduce((a,b) => a + b, 0)
+}
+console.log(fibonacci(1));//46132
