@@ -36,27 +36,16 @@ For example,
     }
 }
 
-const sumFibs = memoize((nums)=>{
-    let fib1 = [1, 1];
-    for (let i = 1; i < nums; i++) {
-        fib1.push((fib1[i] + fib1[i -1])  )
+const sumFibs = memoize((nums) => {
+    let fib2 = [1,1], fib3 = [], fib4 = [];
+    //for creating for Fibonacci code;
+    for (let i = 1; i < nums; i++){
+        fib2.push(fib2[i] + fib2[i -1])
     }
-
-
-    let s = fib1
-    let b = [];
-    for (let i = 0; i < s.length; i++){
-       if (s[i] % 2 == 1){
-            b.push(s[i])
-         }
-    }
-    let d = [];
-    let f = b.forEach(a => {
-        if (a <= nums){
-            d.push(a)
-        }
-    });
-return d.reduce((a,b) => a + b, 0)
+    // for selecting odd fibonacci numbers
+    fib2.filter(a => (a % 2 == 1)? fib3.push(a): fib2);
+    fib3.filter(a => (a <= nums)? fib4.push(a) : a);
+    return fib4.reduce((a, b) => a + b, 0);
 })
 console.log(sumFibs(1));//2
 console.log(sumFibs(1000));//1785
