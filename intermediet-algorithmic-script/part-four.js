@@ -54,3 +54,37 @@ console.log(sumFibs(4));//5
 console.log(sumFibs(75024));//60696
 console.log(sumFibs(75025));//135721
 
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+/*  Sum All Primes
+A prime number is a whole number greater than 1 with exactly two divisors: 1 and itself. For example, 2 is a prime number because it is only divisible by 1 and 2. In contrast, 4 is not prime since it is divisible by 1, 2 and 4.
+
+Rewrite sumPrimes so it returns the sum of all prime numbers that are less than or equal to num.
+
+Passed
+sumPrimes(10) should return a number.
+
+Passed
+sumPrimes(10) should return 17.
+
+sumPrimes(977) should return 73156.*/
+
+function isPrimes(num) {
+  for(let i =2; i < num; i++){
+    if(num % i === 0) {
+        return false;
+    }
+  }
+   return true;
+}
+ function sumPrimes(num){
+     let sumOfPrimeNumbersBe = [];
+     for(let i = 2; i <= num; i++){
+         if(isPrimes(i)){
+             sumOfPrimeNumbersBe.push(i);
+         }
+     } 
+     return sumOfPrimeNumbersBe.reduce((a, b) => a+b,0);
+ }
+ console.log(sumPrimes(977));
+
+ 
