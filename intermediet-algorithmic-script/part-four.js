@@ -113,3 +113,40 @@ smallestCommons([1, 13]) should return 360360.
 
 smallestCommons([23, 18]) should return 6056820.*/
 
+//Memoize function;
+function memoize(func){
+    let cache = {};
+    return (...args) => {
+        let n = args[0];
+        if(n in cache){
+            console.log("fetch cache", n);
+            return cache[n];
+        }
+        else {
+            console.log("fetch result", n);
+            let result = func(n);
+            cache[n] = result;
+            return result;
+        }
+    }
+}
+const smallestCommons = memoize((arr) =>{
+    arr = arr.sort((a, b) => b - a);
+    let [high, low] = [...arr];
+    let multiple = high;
+    for(let j= low; j <  high; j++){
+        if(multiple % j !== 0){
+           multiple += high;
+           j = low - 1;
+            //  console.log(multiple);
+        }
+      
+        else if(j == high){
+            return multiple;
+        }
+    }
+    return multiple;
+});
+console.log(smallestCommons([23, 18]));
+//........................******...............................
+

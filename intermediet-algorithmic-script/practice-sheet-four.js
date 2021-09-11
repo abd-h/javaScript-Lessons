@@ -95,23 +95,70 @@ console.log(make);
 
 function smallestCommons1(arr){
     // sortThe Array
-    arr = arr.sort((a, b) => a - b)
-    let min = arr[0],
-         max = arr[1];
-    console.log(min);
-    console.log(max);
-
-    let numbers = [];
-    let count = 0;
-
-    // Here push that value of  range in to numbers array
-    for(let i = min; i <= max; i++){
-        numbers.push(i)
+    arr = arr.sort((a, b) => b-a)
+    let [high, low] = arr;
+    let multiple = high;
+    for(let i = low; i < high; i++) {
+        if(multiple % i !== 0) {
+            multiple += high;
+            i = low - 1;
+        }
+        else if (i === high) {
+            return multiple;
+        }
     }
-    //Here freeze a multiple candidate starting from the biggest array value - call it j
-    for (let j = max; j <= 10000; j++) {
-        // Increased the demonimator to max 
-    }
-    console.log(numbers );
+    return multiple;
 }
 console.log(smallestCommons1([1, 5]));
+
+//>>>>>>>>...............>>>>>>>>>
+
+/*Drop it
+Given the array arr, iterate through and remove each element starting 
+from the first element (the 0 index) until the function func returns true 
+when the iterated element is passed through it.
+
+Then return the rest of the array once the condition is satisfied, otherwise, 
+arr should be returned as an empty array.
+
+dropElements([1, 2, 3, 4], function(n) {return n >= 3;}) should return [3, 4].
+
+dropElements([0, 1, 0, 1], function(n) {return n === 1;}) should return [1, 0, 1].
+
+dropElements([1, 2, 3], function(n) {return n > 0;}) should return [1, 2, 3].
+
+dropElements([1, 2, 3, 4], function(n) {return n > 5;}) should return [].
+
+dropElements([1, 2, 3, 7, 4], function(n) {return n > 3;}) should return [7, 4].
+
+dropElements([1, 2, 3, 9, 2], function(n) {return n > 2;}) should return [3, 9, 2].
+
+function dropElements(arr, func) {
+  return arr;
+}
+
+dropElements([1, 2, 3], function(n) {return n < 3; });
+*/
+function dropElements(arr, func){
+    let number = arr.find(a => func(a))
+    let indx = arr.indexOf(number);
+    // console.log(indx);
+    if(number === undefined){
+        return [];
+    }
+    else if(number !== undefined){
+        return arr.slice(indx);
+    }
+}
+console.log(dropElements([1, 2, 3], function(n) {return n >=3; }));// returns 3
+console.log(dropElements([1, 2, 3, 4], function(n) {return n >= 3;})); // returns 3,4
+console.log(dropElements([0, 1, 0, 1], function(n) {return n === 1;})); // returns 1,0,1
+console.log(dropElements([1, 2, 3], function(n) {return n > 0;}));// returns  1,2,3
+console.log(dropElements([1, 2, 3, 4], function(n) {return n > 5;})) // should return [].;
+console.log(dropElements([1, 2, 3, 7, 4], function(n) {return n > 3;})) //should return [7, 4];
+console.log(dropElements([1, 2, 3, 9, 2], function(n) {return n > 2;}))// should return [3, 9, 2].;
+
+// function biger(n) {return n > 2;}
+// let paramEl = [1,2,3,9,2];
+// let p =paramEl.splice(0, biger(2))
+// console.log(p);
