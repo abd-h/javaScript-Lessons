@@ -8,4 +8,7 @@ Here's how you can import it to use in another file:
 */
 
 import { add } from `./export-es6`;
-//
+/*Here, import will find add in ./export.js, import just that function for you to use, 
+and ignore the rest. The ./ tells the import to look for the math_functions.js file in the same folder as the current file. The relative file path (./) and file extension (.js) are required when using import in this way.
+
+You can import more than one item from the file by adding them in the import statement like this:*/
