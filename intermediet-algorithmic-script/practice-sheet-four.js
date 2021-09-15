@@ -142,7 +142,6 @@ dropElements([1, 2, 3], function(n) {return n < 3; });
 function dropElements(arr, func){
     let number = arr.find(a => func(a))
     let indx = arr.indexOf(number);
-    // console.log(indx);
     if(number === undefined){
         return [];
     }
