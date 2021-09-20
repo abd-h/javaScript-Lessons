@@ -130,7 +130,7 @@ const alphabet = {
         "00111111": "?",  "00100111": "'"
     }
 for(let i in alphabet){
-    console.log(alphabet[i]);
+    // console.log(alphabet[i]);
 }
 
 function binaryAgent(str){
@@ -139,7 +139,7 @@ function binaryAgent(str){
    let x = [];
    for(let i = 0; i < z.length; i++){
        if(alphabet.hasOwnProperty(z[i])){
-           console.log(alphabet[z[i]]);
+        //    console.log(alphabet[z[i]]);
            x.push(alphabet[z[i]])
        }
    }
@@ -179,7 +179,7 @@ function binaryCodeConv(str){
    let x = [];
    for(let i = 0; i < z.length; i++){
        if(binaryCode.hasOwnProperty(z[i])){
-           console.log(binaryCode[z[i]]);
+        //    console.log(binaryCode[z[i]]);
            x.push(binaryCode[z[i]])
        }
    }
@@ -192,3 +192,11 @@ function binaryCodeConv(str){
    return x.join(" ");
 }
 console.log(binaryCodeConv("generating my first binary code"));
+
+
+function mapBinaryAgent(str) {
+    let string = str.split(" ");
+    return string.map(a => String.fromCharCode(parseInt(a, 2)))
+                        .join("")
+}
+console.log(mapBinaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111"));
