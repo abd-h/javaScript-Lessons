@@ -78,3 +78,86 @@ let orderArr = globalArray.slice()
                    .sort((a, b) => (a === b)? 0 :(a > b)? 1 : -1);
 
 console.log(orderArr);                   
+/*______________________________________________
+
+*** Top 7 JavaScript Array sort() Method Use Cases ***
+
+    Here I will be practicing the most common use cases for 
+    Array sort() method in JavaScript. The sort() method sorts 
+    the elements of an array and returns the sorted array, and no 
+    copy is made. 
+    
+    The default sort order is ascending. In this article, we will see 
+    how we can utilise its power to the fullest.
+
+            Table of Contents
+   1. Sort an Array of Strings
+   2. Case-insensitive Sort an Array of Strings
+   3. Sort an Array of Numbers
+   4. Sort an Array of Date Strings
+   5.Sort an Array except for one Element
+   6. Sort Array of Objects by Property Value
+    7. Sort Array of Objects by Multiple Property values
+*/
+
+//  1. Sort an Array of Strings
+
+const arrStr = ["Apples", "Watermelon", "Bananas", "Cheries"];
+
+const sortedArrStr = arrStr
+    .slice().sort(
+                            (a, b) => (a === b)? 0
+                            :(a > b)? 1
+                            : -1);
+console.log(sortedArrStr); //returns ['Apples', 'Bananas', 'Cheries', 'Watermelon']
+console.log(arrStr);// nonMutated ['Apples', 'Watermelon', 'Bananas', 'Cheries']
+
+// On Decending order
+const decendeingArrStr = arrStr
+        .slice().concat()
+        .sort((a,b) => b.localeCompare(a));
+console.log(decendeingArrStr); 
+//.......................................................................
+
+// 2. Case-insensitive Sort an Array of Strings in decending order
+
+const arrStr1 = ["Apples", "Watermelon", "Bananas", "cheries"];
+const caseInSenArr = arrStr1
+        .map(a => a[0].toUpperCase().concat(a.slice(1)))
+        .slice()
+        .concat()
+        .sort((a, b) => (b === a)? 0
+             : (b > a)? 1
+             : -1
+        );
+
+console.log(caseInSenArr); // returns['Watermelon', 'Cheries', 'Bananas', 'Apples']
+//...........................................................................
+
+// 3. Sort an Array of Numbers
+
+const numbersArr = [9, 12, 98, 1, 100,  2, 300]
+const orderedNums = numbersArr
+                                    .slice().concat()
+                                    .sort((a, b) => (a === b)? 0
+                                            :(b > a)? 1
+                                            : -1);
+console.log(numbersArr);
+console.log(orderedNums);     
+
+const sortingDates = ['2021-08-1', '2021-08-4', '2021-08-10', '2021-08-2'];
+const ascendingDates = sortingDates
+                                        .slice()
+                                        .concat()
+                                        .sort((a, b) => (new Date(a) === new Date(b))? 0
+                                                                :(new Date(a) > new Date(b))? 1
+                                                                : -1);
+console.log(ascendingDates);   
+const descendingDates = 
+    sortingDates.slice().concat().sort((a, b) => 
+                                                (new Date(b) === new Date(a))? 0
+                                                :(new Date(b) > new Date(a))? 1
+                                                : -1);                                                    
+console.log(descendingDates);
+
+                                                  

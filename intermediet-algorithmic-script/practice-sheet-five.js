@@ -193,11 +193,11 @@ function binaryCodeConv(str){
 }
 console.log(binaryCodeConv("generating my first binary code"));
 
-
-function mapBinaryAgent(str) {
-    let string = str.split(" ");
-    return string.map(a => String.fromCharCode(parseInt(a, 2)))
+// Below function converts  string to binary code.
+function convertToBinaryAgent(str) {
+    let string = str.split("");
+    return string.map(a => a.charCodeAt(0).toString(2))
                         .join("")
 }
-console.log(mapBinaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111"));
+// console.log(mapBinaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111"));
 console.log(mapBinaryAgent("I have just discovared this"));
