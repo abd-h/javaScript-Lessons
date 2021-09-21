@@ -156,6 +156,8 @@ console.log(binaryAgent("01001001 00100000 01101100 01101111 01110110 01100101 0
 console.log(binaryAgent("01000001"));
 console.log(binaryAgent("01100111 01100101 01101110 01100101 01110010 01100001 01110100 01101001 01101110 01100111 00100000 01101101 01111001 00100000 01100110 01101001 01110010 01110011 01110100 00100000 01000001 01101001 01101110 01100001 01110010 01111001 00100000 01100011 01101111 01100100 01100101"));
 
+console.log(binaryAgent("1001001 100000 1101000 1100001 1110110 1100101 100000 1101010 1110101 1110011 1110100 100000 1100100 1101001 1110011 1100011 1101111 1110110 1100001 1110010 1100101 1100100 100000 1110100 1101000 1101001 1110011"));
+
 
 const binaryCode = {
         "a": "01100001", "A": "01000001", "b": "01000001", "B":"01000010",
@@ -193,11 +195,19 @@ function binaryCodeConv(str){
 }
 console.log(binaryCodeConv("generating my first binary code"));
 
+function binaryAgent2(str){
+    return str.split(" ")
+                .map(a => String.fromCharCode(parseInt(a, 2)))
+                .join("")
+
+}
+console.log(binaryAgent2("1010111 1101000 1100001 1110100 100000 1100100 1101111 1100101 1110011 100000 1110100 1101000 1101001 1110011 100000 1100011 1101111 1100100 1100101 100000 1110011 1100001 1111001 111111"));
+
 // Below function converts  string to binary code.
 function convertToBinaryAgent(str) {
-    let string = str.split("");
-    return string.map(a => a.charCodeAt(0).toString(2))
-                        .join("")
+    return str.split("")
+                   .map(a => a.charCodeAt(0).toString(2))
+                   .join(" ")
 }
-// console.log(mapBinaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111"));
-console.log(mapBinaryAgent("I have just discovared this"));
+console.log(convertToBinaryAgent("What does this code say?"));
+
