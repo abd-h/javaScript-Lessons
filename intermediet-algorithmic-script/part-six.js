@@ -25,13 +25,13 @@
     addTogether(2, "3") should return undefined.
 
     addTogether(2)([3]) should return undefined.*/
-    function func(num){
-        return num
+    function addTogether(x, y){
+        if(x == Number && y == null){
+            return ((x,y) => x + y)
+        }
+        else if(x !== Number && y !== Number){
+            return undefined
+        }
+        return x+y
     }
-    console.log(func(2));
-
-    function addTogether(x) {
-        return (y => x + y)
-    }
-    console.log(addTogether(2, 3));
-    console.log(addTogether(2)(3));
+    console.log(addTogether(2,3));
