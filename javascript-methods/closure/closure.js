@@ -96,9 +96,9 @@ console.log(timeConvertion()()); // 2 Minutes is equal to 120 seconds
 function scores() {
     let score = 85
     return function showScore() {
-        alert(score);
+        return(score);
     }
-    showScore();
+    
 }
 const displayScore = scores();
 console.log(displayScore());
