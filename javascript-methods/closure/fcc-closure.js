@@ -106,3 +106,106 @@ function amazingFunc() {
     // setInterval(counter, 2000)
 }
 amazingFunc();
+
+/*What will happen now to the variable and function declared inside wonderfulFunction?
+
+In this example, we tell the browser to run counter every 2 seconds. So the JavaScript engine must keep a 
+reference to the function and also to the variable that is used by it. Even after the parent function 
+wonderfulFunction finishes its execution cycle, the function counter and the value count will still "live".
+
+This "effect" of having closures occurs because JavaScript supports the nesting of functions. Or in other 
+words, functions are first class citizens in the language and you can use them like any other object: nested, 
+passed as an argument, as a value of return, and so on.
+
+What can I do with closures in JavaScript?
+Immediately-invoked Function Expression (IIFE)
+This is a technique that was used a lot in the ES5 days to implement the "module" design pattern (before this
+was natively supported). The idea is to "wrap" your module in a function that is immediately executed.
+(function(arg1, arg2){
+...
+...
+})(arg1, arg2)
+
+This lets you use private variables that can only be used by the module itself within the function – that is, 
+it's allowed to emulate the access modifiers.
+const module = (function(){
+	function privateMethod () {
+	}
+	const privateValue = "something"
+	return {
+	  get: privateValue,
+	  set: function(v) { privateValue = v }
+	}
+})()
+
+var x = module()
+x.get() // "something"
+x.set("Another value")
+x.get() // "Another Value"
+x.privateValue //Error*/
+
+/*Function Factory
+Another design pattern implemented thanks to closures is the “Function Factory”. 
+This is when functions create functions or objects, for example, a function that allows 
+you to create user objects.*/
+function createdId(){
+    return "17hakg9a7jas";
+}
+console.log(createdId("17hakg9a7jas"));
+const createUser = ({userName, avatar}) => ({
+    id: createdId(),
+    userName,
+    avatar,
+    changeUserName (userName){
+        this.userName = userName
+        return this;
+    },
+    changeAvatar (url){
+        
+        // execute some logic to retrieve avatar image
+        const newAvatar = fetchAvatarFromUrl(url)
+        this.avatar = newAvatar
+        return this;
+    }
+});
+console.log(createUser({userName: "Avatar", avatar: "bender.png"}));
+
+/*And using this pattern you can implement an idea from functional programming called currying.
+
+Currying
+Currying is a design pattern (and a characteristic of some languages) where a function is immediately evaluated and returns a second function. This pattern lets you execute specialization and composition.
+
+You create these "curried" functions using closures, defining and returning the inner function of the closure.
+
+*/
+
+function multiplu(x) {
+    return (y)=>{
+        return(z) =>{
+            return x * y *z
+        }
+    }
+}
+const result = multiplu(2)
+const result2= result(4)
+const result3 = result2(6);
+console.log(result3);
+console.log(multiplu(2)(4)(6));
+
+/*These types of functions take a single value or argument and return another function that also receives an 
+argument. It is a partial application of the arguments. It is also possible to rewrite this example using ES6.*/
+const multiplu2 = ((x)=> (y) => (z) => x * y * z)
+console.log(multiplu2(3)(10)(10));
+
+/*Where can we apply currying? In composition, let's say you have a function that creates HTML elements.*/
+function createElement(element){
+    const el = document.createElement(element)
+    return (content) =>{
+        return el.textNode = content
+    }
+}
+const bold = createElement("b")
+const italic = createElement("i")
+const content = "My content"
+const myElement = bold(italic(content))
+console.log(myElement);
