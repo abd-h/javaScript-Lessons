@@ -209,3 +209,26 @@ const italic = createElement("i")
 const content = "My content"
 const myElement = bold(italic(content))
 console.log(myElement);
+
+/*
+Event Listeners
+Another place you can use and apply closures is in event handlers using React.
+
+Suppose you are using a third party library to render the items in your data collection. This library exposes a component called RenderItem that has only one available prop onClick. This prop does not receive any parameters and does not return a value.
+
+Now, in your particular app, you require that when a user clicks on the item the app displays an alert with the item's title. But the onClick event that you have available does not accept arguments – so what can you do? Closures to the rescue:*/
+
+const onItemClick = title =>  alert(`Clicked ${title}`)
+// return(
+//     <container>
+//     {
+//         item.map(item => {
+//             return (
+//                 <RenderItem onClick={onItemClick(ItemTitle)}>
+//                 <Title>{item.title}</Title>
+//                 </RenderItem>
+//             )
+//         })
+//     }
+//     </container>
+// )
