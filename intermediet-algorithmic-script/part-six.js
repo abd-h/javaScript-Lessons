@@ -25,15 +25,28 @@
     addTogether(2, "3") should return undefined.
 
     addTogether(2)([3]) should return undefined.*/
-const addTogether = () => {
-    return (a) =>{
-        return (b) => {
-            return a +b
+const addTogether = (a, b ) => {
+    function r(c){
+        return Number.isInteger(c);
+    }
+    if(!r(a)) {
+        return undefined
+    }
+    else if(r(a) && r(b)) {
+        return a + b;
+    }
+    else if(!b){
+        return function args(n) {
+            if(r(n)){
+                return a + n
+            }
         }
     }
 }    
+console.log(addTogether(2,3));
+console.log(addTogether(5)(7));
+console.log(addTogether(2, "3"));
+console.log(addTogether(23, 30));
 
-let result = addTogether(2)(3)
-console.log(result(4, 3));
-console.log(addTogether(2)(7));
-console.log(result(4));
+
+
