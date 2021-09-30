@@ -131,3 +131,19 @@ function foo(a){
 } 
 let moar = foo(5)
 console.log(moar(15));
+
+
+function addTogether(a, b){
+    let number = (c => Number.isInteger(c))
+    return (!number(a))?  undefined
+              :(number(a) && number(b))? a + b
+              :(!b)? ((c => (number(c))? a + c : undefined))
+              : undefined 
+}
+console.log(addTogether(2)(6));
+console.log(addTogether(23, 30));
+console.log(addTogether(5)(7));
+console.log(addTogether("http://bit.ly/IqT6zt"));
+console.log(addTogether(2)([3]));
+
+
