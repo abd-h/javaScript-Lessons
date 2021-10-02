@@ -191,6 +191,7 @@ for( let props in duckThree) {
 console.log(prototypeProps);//['numLegs', 'eat']
 console.log(ownProperty); // ['name', 'speed']
 console.log(Object.keys(duckThree.name));//['name', 'speed']
+console.log(Object.keys(duckThree.numLegs));//['name', 'speed']
 
 /*Understand the Constructor Property
 There is a special constructor property located on the object instances duck and beagle 
@@ -217,3 +218,44 @@ function joinBirdFraternity(candidate){
     }
 }
 console.log(joinBirdFraternity(duckThree));
+
+/*Write a joinDogFraternity function that takes a candidate parameter and, using 
+the constructor property, return true if the candidate is a Dog, otherwise return false.*/
+function joinDogFraternity(candidate){
+    if(candidate.constructor === Dog){
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+console.log(joinDogFraternity(duckThree));
+//.........................................................................
+
+/*Change the Prototype to a New ObjectPassed
+Up until now you have been adding properties to the prototype individually:
+
+Bird.prototype.numLegs = 2;
+This becomes tedious after more than a few properties.
+
+Bird.prototype.eat = function() {
+  console.log("nom nom nom");
+}
+
+Bird.prototype.describe = function() {
+  console.log("My name is " + this.name);
+}
+
+A more efficient way is to set the prototype to a new object that already contains the properties. 
+This way, the properties are added all at once:*/
+Cat.prototype = {
+    eat: (() => "Red meat "),
+    topSpeed: (() => "35mph"),
+    describe: (() => "Beautiful golden fur"),
+    inteligence: (() => `Very smart`)
+}
+let bigCat = new Cat('BigCat') 
+console.log(bigCat.eat());
+console.log(bigCat.describe());
+console.log(bigCat.topSpeed());
+console.log(bigCat.inteligence());
