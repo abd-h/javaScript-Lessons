@@ -78,5 +78,8 @@ must be the only available means of interacting with the object.
 
  */
 let Person = ((firstAndLast) => {
-    
+    this.firstAndLast = firstAndLast;
+    this.getFullName = (() => firstAndLast)
 })
+let person = new Person('Bob Ross');
+console.log(Object.keys(person));
