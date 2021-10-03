@@ -260,6 +260,43 @@ console.log(bigCat.describe());
 console.log(bigCat.topSpeed());
 console.log(bigCat.inteligence());
 
+/*Remember to Set the Constructor Property when Changing the Prototype
+There is one crucial side effect of manually setting the prototype to a new object. 
+It erases the constructor property! This property can be used to check which 
+constructor function created the instance, but since the property has been overwritten, 
+it now gives false results:*/
+
+console.log(bigCat.constructor === Cat);
+console.log(bigCat.constructor === Object);
+console.log(bigCat instanceof Cat);
+/*  In order, these expressions would evaluate to false, true, and true.
+
+To fix this, whenever a prototype is manually set to a new object, remember to define the 
+constructor property:*/
+function Fish(name1, hunts){
+    this.name1 = name1;
+    this.hunts = hunts;
+}
+
+Fish.prototype = {
+    constructor: Fish,
+    type: "Orcs",
+    fins: 4,
+    eat () {  
+        return`${this.hunts}`
+    },
+    describe () {
+       return `The name of this animal is ${this.name1}`
+    }
+}
+
+let orcs = new Fish("Orcs", "Whale")
+console.log(orcs.describe());
+console.log(orcs.eat());
+
+
+
+
 /* Make a Person
 Fill in the object constructor with the following methods below:
 
