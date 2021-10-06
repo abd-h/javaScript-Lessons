@@ -304,7 +304,64 @@ function Bird(name) {
 
  let duck = new Bird("Donald")
  duck inherits its prototype from the Bird constructor function. You can show this relationship with the isPrototypeOf method:
-*/ 
+...........................................................................................
+
+Understand the Prototype ChainPassed
+All objects in JavaScript (with a few exceptions) have a prototype. Also, 
+an object’s prototype itself is an object.*/ 
+function Wolf(name){
+    this.name = name;
+}
+console.log(typeof Wolf.prototype); // returns Object
+/*
+Because a prototype is an object, a prototype can have its own prototype! In this case, 
+the prototype of Wolf.prototype is Object.prototype:
+*/
+console.log(Object.prototype.isPrototypeOf(Wolf.prototype)); // returns  true
+/*How is this useful? You may recall the hasOwnProperty method from a previous challenge:*/
+let arcticWolf = new Wolf("Apax Preditor");
+let wildWolf = arcticWolf.hasOwnProperty("name");
+console.log(wildWolf);
+/*The hasOwnProperty method is defined in Object.prototype, which can be accessed by Wolf.prototype, 
+which can then be accessed by Wolf. This is an example of the prototype chain. In this prototype chain, 
+Wolf is the supertype for arcticWolf, while arcticWolf is the subtype. Object is a supertype for both Bird and duck. 
+Object is a supertype for all objects in JavaScript. Therefore, any object can use the hasOwnProperty method.
+.......................................................................................
+
+Use Inheritance So You Don't Repeat Yourself
+There's a principle in programming called Don't Repeat Yourself (DRY). The reason repeated code is a problem is because any change requires fixing code in multiple places. This usually means more work for programmers and more room for errors.
+
+Notice in the example below that the describe method is shared by Bird and Dog:
+
+Bird.prototype = {
+  constructor: Bird,
+  describe: function() {
+    console.log("My name is " + this.name);
+  }
+};
+
+Dog.prototype = {
+  constructor: Dog,
+  describe: function() {
+    console.log("My name is " + this.name);
+  }
+};
+The describe method is repeated in two places. The code can be edited to follow the DRY principle by creating a supertype (or parent) called Animal:
+*/
+function House1(namE) {
+    this.namE = namE;
+}
+
+function Flat(name) {
+    this.name = name;
+}
+let house = new House1("Carlon Avenue")
+House1.prototype.describe = () => {
+    return`${this.namE} is located in London`
+};
+console.log(house.describe());
+
+
 
 
 
