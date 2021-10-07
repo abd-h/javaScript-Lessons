@@ -348,20 +348,80 @@ Dog.prototype = {
 };
 The describe method is repeated in two places. The code can be edited to follow the DRY principle by creating a supertype (or parent) called Animal:
 */
-function House1(namE) {
-    this.namE = namE;
+function Property() { };
+Property.prototype = {
+    constructor: Property,
+    eat(){return `nom nom nom`},
+    numberOfBedrooms(){
+        return `${this.name} has four bedrooms in total`
+    },
+    describe(){return `${this.name} is located in ${this.location}`}
 }
-
-function Flat(name) {
+function House(name, location) {
     this.name = name;
+    this.location = location;
 }
-let house = new House1("Carlon Avenue")
-House1.prototype.describe = () => {
-    return`${this.namE} is located in London`
-};
-console.log(house.describe());
+function Flat(name, location = 'Bristol'){
+    this.name = name;
+    this.location = location;
+}
+House.prototype = Object.create(Property.prototype)
+Flat.prototype = Object.create(Property.prototype)
+
+let house = new House('County Palace', 'Birmingham');
+console.log(house.numberOfBedrooms()); // County Palace has four bedrooms in total
+
+let flat = new Flat('Peppermint Height', 'LiverPool');
+console.log(flat.describe());//Peppermint Height is located in Cardif
 
 
+/*The numberOfbedRooms is repeated in two places. The code can be edited to follow 
+the DRY principle by creating a supertype (or parent) called property:
+*/
+
+
+
+
+/*Inherit Behaviors from a SupertypePassed
+In the previous challenge, you created a supertype called Animal that defined 
+behaviors shared by all animals:*/
+function Animal(){ }
+Animal.prototype = {
+    constructor: Animal,
+    eat()  {return `nom nom nom`},
+    describe(){return `Bird Family`}
+}
+
+
+/*This and the next challenge will cover how to reuse the methods of Animal inside 
+Bird and Dog without defining them again. It uses a technique called inheritance. 
+This challenge covers the first step: make an instance of the supertype (or parent). 
+You already know one way to create an instance of Animal using the new operator:
+let myAnimal = new Animal('Crow')
+*/ 
+let animal = Object.create(Animal.prototype);
+/*Object.create(obj) creates a new object, and sets obj as the new object's prototype. 
+Recall that the prototype is like the "recipe" for creating an object. By setting the prototype 
+of animal to be the prototype of Animal, you are effectively giving the animal instance the 
+same "recipe" as any other instance of Animal.*/
+console.log(animal.eat());
+console.log(animal instanceof Animal);//The instanceof method here would return true.
+//.............................................................................
+
+/*Use Object.create to make two instances of Animal named duck and beagle.*/
+let duckFour = Object.create(Animal.prototype)
+let beagle = Object.create(Animal.prototype)
+let duc = duckFour instanceof Animal
+console.log(duckFour.eat());
+console.log(duckFour.describe());
+console.log(beagle.eat());
+console.log(beagle.describe());
+console.log(duc);
+
+/*Set the Child's Prototype to an Instance of the ParentPassed
+In the previous challenge you saw the first step for inheriting behavior from the supertype (or parent) Animal: making a new instance of Animal.
+
+This challenge covers the next step: set the prototype of the subtype (or child)—in this case, Bird—to be an instance of Animal.*/
 
 
 
