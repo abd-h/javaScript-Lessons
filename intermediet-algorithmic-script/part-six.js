@@ -77,9 +77,20 @@ must be the only available means of interacting with the object.
 
 
  */
-let Person = ((firstAndLast) => {
+function Person(firstAndLast){
     this.firstAndLast = firstAndLast;
-    this.getFullName = (() => firstAndLast)
-})
-let person = new Person('Bob Ross');
-console.log(Object.keys(person));
+}
+Person.prototype = {
+    constructor: Person,
+    getFirstName() {return this.firstAndLast.split(" ").slice(0,1)},
+    getLastName () {return this.firstAndLast.split(" ").slice(1)},
+    getFullName() {return this.getFirstName().concat(this.getLastName()).join(" ")}
+}
+let bob = new Person("Bob Ross");
+console.log(bob instanceof Person);
+console.log(bob.getFirstName());
+console.log(bob.getLastName());
+console.log(bob.getFullName());
+bob.getFirstName = ((first) => first)();
+console.log(bob.getFirstName("Haskel"));
+console.log(bob.getFullName());

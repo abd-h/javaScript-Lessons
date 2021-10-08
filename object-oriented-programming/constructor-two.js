@@ -2,14 +2,14 @@
 There's a principle in programming called Don't Repeat Yourself (DRY). The reason repeated code is a problem is because any change requires fixing code in multiple places. This usually means more work for programmers and more room for errors.
 
 Notice in the example below that the describe method is shared by Bird and Dog:*/
-
+function Bird(){ }
 Bird.prototype = {
   constructor: Bird,
   describe: function() {
     console.log("My name is " + this.name);
   }
 };
-
+function Dog(){ }
 Dog.prototype = {
   constructor: Dog,
   describe: function() {
@@ -168,4 +168,308 @@ Here's an example:*/
     console.log(bird.constructor === Bird);
     console.log(bird.fly());//would display the string "flying wooosh"
     console.log(bird.eat());//would display the string  "Eats Whole Grain"
+
+    
+    {
+    //Challenge
+    /*Add all necessary code so the Dog object inherits from Animal and the Dog's prototype constructor is set to Dog. Then add a bark() method to the Dog object so that beagle can both eat() and bark(). The bark() method should print Woof! to the console.*/
+
+    function Animal(){ };
+    Animal.prototype.eat = () => `nom nom nom`;
+
+    function Dog(){ };
+    Dog.prototype = Object.create(Animal.prototype)
+    Dog.prototype.constructor = Dog;
+    Dog.prototype.bark = () => `Woof!`;
+
+    let beagle = new Dog();
+    console.log(beagle.eat());
+    console.log(beagle.bark());
+    }
+    //.....................  END ...............................
 }
+
+{
+    /*Override Inherited Methods
+In previous lessons, you learned that an object can inherit its behavior (methods) from 
+another object by referencing its prototype object:
+
+ChildObject.prototype = Object.create(ParentObject.prototype);
+Then the ChildObject received its own methods by chaining them onto its prototype:
+
+ChildObject.prototype.methodName = function() {...};
+It's possible to override an inherited method. It's done the same way - by adding a method to ChildObject.prototype using the same method name as the one to override. Here's an example of Bird overriding the eat() method inherited from Animal:
+*/
+function Animal(){ }
+Animal.prototype.eat = () => `nom nom nom`;
+
+function Bird(){ }
+Bird.prototype =Object.create(Animal.prototype)
+Bird.prototype.constructor = Bird;
+Bird.prototype.eat = () => `peck peck peck`;
+
+let duck = new Bird();
+console.log(duck.eat());
+
+/*If you have an instance let duck = new Bird(); and you call duck.eat(), this is how JavaScript looks for the method on the prototype chain of duck:
+
+duck => Is eat() defined here? No.
+Bird => Is eat() defined here? => Yes. Execute it and stop searching.
+Animal => eat() is also defined, but JavaScript stopped searching before reaching this level.
+Object => JavaScript stopped searching before reaching this level.*/
+
+//.....................  END ...............................
+}
+
+{
+    /*Use a Mixin to Add Common Behavior Between Unrelated ObjectsPassed
+As you have seen, behavior is shared through inheritance. However, there are cases 
+when inheritance is not the best solution. Inheritance does not work well for unrelated 
+objects like Bird and Airplane. They can both fly, but a Bird is not a type of Airplane 
+and vice versa.
+
+For unrelated objects, it's better to use mixins. A mixin allows other objects to use 
+a collection of functions.*/
+
+let flyMixin = obj => {
+    obj.fly = () => `Flying Wooooosh`
+}
+
+let bird = {
+    name: `Seagul`,
+    location: `Londom`
+};
+
+let eagle = {
+    name: `Apax`,
+    location: `Alps Mountain range`
+};
+flyMixin(bird);
+flyMixin(eagle);
+
+/*Here bird and eagle are passed into flyMixin, which then assigns the fly function to each object. 
+Now bird and eagle can both fly:*/
+console.log(bird.fly());
+console.log(eagle.fly());
+/*The console would display the string Flying, wooosh! twice, once for each .fly() call.
+
+Note how the mixin allows for the same fly method to be reused by unrelated objects bird and eagle.*/
+
+    {// Challenge
+        /*Create a mixin named glideMixin that defines a method named glide. 
+        Then use the glideMixin to give both bird and boat the ability to glide.*/
+        let bird = {
+            name: "Donald Duck",
+            attribute: "Can fly"
+        };
+
+        let speedBoat = {
+            name: "Yamaha",
+            Attribute: 'Super fast on water'
+        }
+
+        function glideMixin(obj){
+        return obj.glide = function(){
+                return "I have the ability to glide"
+            }
+        }
+        glideMixin(bird)
+        glideMixin(speedBoat)
+        console.log(bird.glide());
+        console.log(speedBoat.glide());
+
+        {// ES6 arrow fuction version
+            let bird = {
+                name: "Donald Duck",
+                attribute: "Can fly"
+            };
+
+            let speedBoat = {
+                name: "Yamaha",
+                Attribute: 'Super fast on water'
+            }
+
+            let glideMixin = (obj => obj.glide = () => `I haave the ability to glide effortlessly`)
+            glideMixin(bird);
+            glideMixin(speedBoat);
+
+            console.log(bird.glide());
+            console.log(speedBoat.glide());
+        
+        }
+    }
+//.....................  END ...............................
+}
+
+{
+    /*Use Closure to Protect Properties Within an Object from Being Modified Externally
+    In the previous challenge, bird had a public property name. It is considered public because it can be accessed and changed outside of bird's definition.
+
+    bird.name = "Duffy";
+    Therefore, any part of your code can easily change the name of bird to any value. Think about things like passwords and bank accounts being easily changeable by any part of your codebase. That could cause a lot of issues.
+
+    The simplest way to make this public property private is by creating a variable within the constructor function. This changes the scope of that variable to be within the constructor function versus available globally. This way, the variable can only be accessed and changed by methods also within the constructor function.*/
+
+    function Bird(){
+        let hatchedEggs = 10;
+        this.getHatchedEggCount = () => hatchedEggs;
+    }
+    let ducky = new Bird();
+    console.log(ducky.getHatchedEggCount());
+    
+    /*Here getHatchedEggCount is a privileged method, because it has access to the private variable 
+    hatchedEgg. This is possible because hatchedEgg is declared in the same context as getHatchedEggCount. 
+    In JavaScript, a function always has access to the context in which it was created. This is called closure.*/
+    
+    {
+        /*Challenge
+        Change how weight is declared in the Bird function so it is a private variable. 
+        Then, create a method getWeight that returns the value of weight 15.
+
+        function Bird() {
+            this.weight = 15;
+        }*/
+
+        function Bird(){
+            let weight = 15;
+
+            this.getWeight = () => weight;
+        }
+        let privetWeight = new Bird();
+        console.log(privetWeight.getWeight());
+    }
+//.....................  END ...............................
+}
+
+{
+    /*Understand the Immediately Invoked Function Expression (IIFE)Passed
+    A common pattern in JavaScript is to execute a function as soon as it is declared:
+
+    (function () {
+    console.log("Chirp, chirp!");
+    })();
+    This is an anonymous function expression that executes right away, and outputs Chirp, chirp! immediately.
+
+    Note that the function has no name and is not stored in a variable. The two parentheses () at the end of 
+    the function expression cause it to be immediately executed or invoked. This pattern is known as an 
+    immediately invoked function expression or IIFE.
+
+    Rewrite the function makeNest and remove its call so instead it's an anonymous immediately invoked 
+    function expression (IIFE).
+    
+    function makeNest() {
+        console.log("A cozy nest is ready");
+    }
+    makeNest();*/
+    (() => console.log(`A cozy nest is ready`))();
+
+    /*Use an IIFE to Create a Module
+    An immediately invoked function expression (IIFE) is often used to group related functionality 
+    into a single object or module. For example, an earlier challenge defined two mixins:*/
+
+    function glideMixin(obj){
+        return obj.glide = function(){
+            return "Gliding on the water"
+        }
+    }
+
+    function flyMixin(obj){
+        return obj.fly = function(){
+            return "Flying, woosh"
+        }
+    }
+    //We can group these mixins into a module as follows:
+    let bird = {
+                name: "Donald Duck",
+                attribute: "Can fly"
+            };
+
+            let speedBoat = {
+                name: "Yamaha",
+                Attribute: 'Super fast on water'
+            }
+    let motionModule = (function(){
+        return {
+            flyMixin: function(obj){
+                obj.fly = function(){
+                    return "Flying, Woosh"
+                }
+            },
+            glideMixin: function(obj){
+                obj.glide = function(){
+                    return "Gliding on water"
+                }
+            }
+        }
+    })();
+    motionModule.flyMixin(bird)
+    motionModule.glideMixin(speedBoat)
+    console.log(bird.fly());
+    console.log(speedBoat.glide());
+
+    {
+        //We can group these mixins into a module as follows:
+        // With arrow functions;
+        let bird = {
+                name: "Donald Duck",
+                attribute: "Can fly"
+            };
+
+            let speedBoat = {
+                name: "Yamaha",
+                Attribute: 'Super fast on water'
+            }
+        let flyMixin = (obj => obj.fly = (() => `Flying with a Red Arrows`));
+        let glideMixin = (obj => obj.glide = (() => `Gliding on water`));
+        flyMixin(bird);
+        glideMixin(speedBoat);
+        console.log(bird.fly());
+        console.log(speedBoat.glide());
+
+        let module = (() => {
+            return {
+                flyMixin(obj){
+                    obj.fly = (() => `Flying with blue and red arrows`)
+                },
+                glideMixin(obj) {
+                    obj.glide = (() => `gliding via the river`)
+                }
+            }
+        })();
+        module.flyMixin(bird)
+        module.glideMixin(speedBoat)
+        console.log(bird.fly());
+        console.log(speedBoat.glide());
+    }
+
+    /*
+    Create a module named funModule to wrap the two mixins isCuteMixin and singMixin. 
+    funModule should return an object.*/
+
+        let isCuteMixin = function(obj) {
+            obj.isCute = function() {
+                return true;
+            };
+        };
+        let singMixin = function(obj) {
+             obj.sing = function() {
+                console.log("Singing to an awesome tune");
+            };
+        };
+
+        let funModule = (() => {
+            return {
+                singMixin(obj){
+                    obj.sing = (() => console.log("Singing to an awesome tune") )
+                },
+                isCuteMixin(obj){
+                    obj.glide = () => true
+                }
+            }
+        })();
+        
+
+}
+
+
+
