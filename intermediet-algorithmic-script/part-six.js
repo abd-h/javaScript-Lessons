@@ -77,20 +77,64 @@ must be the only available means of interacting with the object.
 
 
  */
+let bird = {name: "alsa"}
 function Person(firstAndLast){
-    this.firstAndLast = firstAndLast;
+    let fullName = firstAndLast;
+    let firstName = firstAndLast.split(' ')[0]
+    let lastName = firstAndLast.split(' ')[1]
+    this.getFirstName = () => firstName;
+    this.getLastName = () =>lastName;
+    this.getFullName = () => fullName
+    this.setFirstName = function(first) {
+        firstName = first.concat(" ", lastName)
+        return firstName
+    };
+    this.setLastName = function(last) {
+        lastName = last.concat(" ", firstName)
+        return lastName
+    }
+
+    this.setFullName = function (firstAndLast) {
+      fullName = firstAndLast
+      return fullName
+    }
+    // this.setLastName = (last) => fullName.replace(fullName.split(" ").slice(1), last);
 }
-Person.prototype = {
-    constructor: Person,
-    getFirstName() {return this.firstAndLast.split(" ").slice(0,1)},
-    getLastName () {return this.firstAndLast.split(" ").slice(1)},
-    getFullName() {return this.getFirstName().concat(this.getLastName()).join(" ")}
-}
+// Person.prototype = {
+//     constructor: Person,
+//     getFirstName() {return this.firstAndLast.split(" ").slice(0,1)},
+    
+//     // getFullName() {return this.getFirstName().concat(this.getLastName()).join(" ")}
+    
+// }
 let bob = new Person("Bob Ross");
 console.log(bob instanceof Person);
 console.log(bob.getFirstName());
 console.log(bob.getLastName());
 console.log(bob.getFullName());
-bob.getFirstName = ((first) => first)();
-console.log(bob.getFirstName("Haskel"));
-console.log(bob.getFullName());
+console.log(bob.setFirstName("Haskey"));
+console.log(bob.getFirstName());
+console.log(bob.setLastName("Cury"));
+console.log(bob.getLastName());
+console.log(bob.setFullName("abdalla Hussein"));
+// console.log(bob.setLastName());
+
+// console.log(bob.getFirstName());
+// console.log(bob.getFullName());
+
+// let setFirstName = (first => first.getFirstName = () => "Haskel");
+// let s = setFirstName(bird)
+
+// let s2 = setFirstName(bob)
+// console.log(bob.getFirstName());
+// console.log(bob.getFullName());
+
+
+let s = 'Abdalla, Hussein';
+let first = s.split(" ")[0],
+ last = s.split(" ")[1];
+console.log(first, last);
+
+{
+    
+}
