@@ -76,65 +76,79 @@ an argument must accept only one argument and it has to be a string. These metho
 must be the only available means of interacting with the object.
 
 
+Object.keys(bob).length should return 6.
+
+Passed
+bob instanceof Person should return true.
+
+Passed
+bob.firstName should return undefined.
+
+Passed
+bob.lastName should return undefined.
+
+Passed
+bob.getFirstName() should return the string Bob.
+
+Passed
+bob.getLastName() should return the string Ross.
+
+Passed
+bob.getFullName() should return the string Bob Ross.
+
+bob.getFullName() should return the string Haskell Ross after bob.setFirstName("Haskell").
+
+bob.getFullName() should return the string Haskell Curry after bob.setLastName("Curry").
+
+Passed
+bob.getFullName() should return the string Haskell Curry after bob.setFullName("Haskell Curry").
+
+bob.getFirstName() should return the string Haskell after bob.setFullName("Haskell Curry").
+
+bob.getLastName() should return the string Curry after bob.setFullName("Haskell Curry").
+
+
  */
-let bird = {name: "alsa"}
+
 function Person(firstAndLast){
     let fullName = firstAndLast;
     let firstName = firstAndLast.split(' ')[0]
     let lastName = firstAndLast.split(' ')[1]
     this.getFirstName = () => firstName;
     this.getLastName = () =>lastName;
-    this.getFullName = () => fullName
+    this.getFullName = () => `${this.getFirstName()} ${this.getLastName()}`
     this.setFirstName = function(first) {
-        firstName = first.concat(" ", lastName)
+        firstName = first
         return firstName
     };
     this.setLastName = function(last) {
-        lastName = last.concat(" ", firstName)
+        lastName = last
         return lastName
     }
-
     this.setFullName = function (firstAndLast) {
-      fullName = firstAndLast
-      return fullName
+        firstName = firstAndLast.split(" ")[0]
+        lastName = firstAndLast.split(" ")[1]
+        fullName = `${firstName} ${lastName}`
+      return  fullName;
     }
-    // this.setLastName = (last) => fullName.replace(fullName.split(" ").slice(1), last);
+    
 }
-// Person.prototype = {
-//     constructor: Person,
-//     getFirstName() {return this.firstAndLast.split(" ").slice(0,1)},
-    
-//     // getFullName() {return this.getFirstName().concat(this.getLastName()).join(" ")}
-    
-// }
+
 let bob = new Person("Bob Ross");
-console.log(bob instanceof Person);
-console.log(bob.getFirstName());
-console.log(bob.getLastName());
-console.log(bob.getFullName());
-console.log(bob.setFirstName("Haskey"));
-console.log(bob.getFirstName());
-console.log(bob.setLastName("Cury"));
-console.log(bob.getLastName());
-console.log(bob.setFullName("abdalla Hussein"));
-// console.log(bob.setLastName());
-
-// console.log(bob.getFirstName());
-// console.log(bob.getFullName());
-
-// let setFirstName = (first => first.getFirstName = () => "Haskel");
-// let s = setFirstName(bird)
-
-// let s2 = setFirstName(bob)
-// console.log(bob.getFirstName());
-// console.log(bob.getFullName());
-
-
-let s = 'Abdalla, Hussein';
-let first = s.split(" ")[0],
- last = s.split(" ")[1];
-console.log(first, last);
-
-{
-    
-}
+let s = Object.keys(bob);
+console.log(s); //returns ['getFirstName', 'getLastName', 'getFullName', 'setFirstName', 'setLastName', 'setFullName']
+console.log(Object.keys(bob).length); // returns 6
+console.log(bob instanceof Person); // true
+console.log(bob.firstName); // undefined
+console.log(bob.lastName) // return undefined.
+console.log(bob.getFirstName()); //returns Bob.
+console.log(bob.getLastName());// returns Ross
+console.log(bob.getFullName()); // returns Bob Ross
+bob.setFirstName("Haskell");
+console.log(bob.getFullName());//returns the string Haskell Ross after bob.setFirstName("Haskell").
+bob.setLastName("Curry");
+console.log(bob.getFullName()); //bob.getFullName() returns the string Haskell Curry after bob.setLastName("Curry").
+bob.setFullName("Christiano Ronaldo");
+console.log(bob.getFullName()); //bob.getFullName()  returns the string Christiano Ronaldo after bob.setFullName("Christiano Ronaldo").
+console.log(bob.getFirstName()); // returns the string Christiano after bob.setFullName("Christiano Ronaldo").
+console.log(bob.getLastName()); // returns the string Ronaldo after bob.setFullName("Christiano Ronaldo").
